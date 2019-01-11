@@ -1,4 +1,4 @@
-package com.example.h0033.keelim0;
+package com.example.h0033.myapplication;
 
 import org.junit.Test;
 

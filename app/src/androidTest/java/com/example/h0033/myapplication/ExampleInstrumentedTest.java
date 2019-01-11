@@ -1,4 +1,4 @@
-package com.example.h0033.keelim0;
+package com.example.h0033.myapplication;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -17,11 +17,10 @@ import static org.junit.Assert.*;
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
     @Test
-
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.h0033.keelim0", appContext.getPackageName());
+        assertEquals("com.example.h0033.myapplication", appContext.getPackageName());
     }
 }

@@ -1,13 +1,13 @@
-package com.example.h0033.keelim0;
+package com.example.h0033.myapplication;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class Frame extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_frame);
+        setContentView(R.layout.activity_main);
     }
 }
