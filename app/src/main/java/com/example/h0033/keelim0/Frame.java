@@ -3,11 +3,11 @@ package com.example.h0033.keelim0;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class scroll extends AppCompatActivity {
+public class Frame extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scroll);
+        setContentView(R.layout.activity_frame);
     }
 }
