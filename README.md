@@ -11,3 +11,4 @@
 3. setContentView() > xml 메모리상에 객체화 하는 것 (Layoutinflater)
 4. LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE) >xml 을 객체화 시키기(부분화면)
 
+##2019 01 14 TDL
