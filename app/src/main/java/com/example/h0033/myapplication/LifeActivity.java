@@ -65,7 +65,10 @@ public class LifeActivity extends AppCompatActivity {
         super.onResume();
         Toast.makeText(this, "onResume() 호출", Toast.LENGTH_LONG).show();
         SharedPreferences pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
-        if
+        if(pref !=null){
+            String name = pref.getString("name", "");
+            Toast.makeText(this, "복구된 이름" + name, Toast.LENGTH_LONG).show();
+        }
 
 
 

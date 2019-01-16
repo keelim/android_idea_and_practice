@@ -34,5 +34,9 @@
     - Serializable > 객체 직렬화 Parcelable > Android 권장
 
 3. 수명 주기 lifeCycle onCreate(), onResume, onDestoryed, onStart(), onPause >Thread 하고 비슷
+4. 서비스 데몬 처럼 실행이 되어져야 한다. > 시스템이 자동으로 재시작을 해줘야 한다. 
+    -  service 를 상속을 한다.  
+
+
     
 
