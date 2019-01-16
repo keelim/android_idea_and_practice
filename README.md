@@ -1,3 +1,5 @@
+#README.md
+
 ##2019 01 12 TDL
 1. text 속성 조정
 2. 라디오 버튼 및 라디오 그룹
@@ -19,3 +21,18 @@
     - 브로드캐스트 수신자
     - 내용 제공자 -> 보안으로 인하여 바로 파일 사용이 불가능하다.
 2. mainfest.xml > intent filter를 구문을 넣어야지만 app 실행
+
+
+##2019 01 16 TDL
+1. intent 무언 가를 전달 해 주는 것을 (시스템이 일단은 받는다. )
+    - 명시적 인텐트 -> tel, http
+    - 암시적 인텐트
+    - startActivity(intent); > 이것으로 사용을 한다.
+2. flag , ExtraData (액티비티는 stack의 구조를 띄고 있다. ) >원하는대로 화면이 바뀌지 않을 수 있다.
+    -flag > option? intent 의 flag 를 넣어주는 것이다.
+    - onCreate -> CallBack 으로 재사용시에는 호출되지 않는다. Cleartop, singleTop
+    - Serializable > 객체 직렬화 Parcelable > Android 권장
+
+3. 수명 주기 lifeCycle onCreate(), onResume, onDestoryed, onStart(), onPause >Thread 하고 비슷
+    
+
