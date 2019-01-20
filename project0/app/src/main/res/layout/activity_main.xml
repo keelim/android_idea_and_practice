@@ -9,13 +9,15 @@
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"></View>
+        android:layout_weight="1"
+        android:background="@android:color/holo_blue_bright"></View>
 
     <View
         android:id="@+id/view2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"></View>
+        android:layout_weight="1"
+        android:background="@android:color/holo_purple"></View>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -25,7 +27,8 @@
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:textColor="@android:color/black" />
     </ScrollView>
 
 
