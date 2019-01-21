@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -23,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast toast = Toast.makeText(getApplicationContext(), "위치가 바뀌 토스트 ", Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.TOP|Gravity.LEFT, 200, 200);
+                toast.setGravity(Gravity.TOP | Gravity.LEFT, 200, 200);
                 toast.show();
             }
         });
@@ -35,9 +37,24 @@ public class MainActivity extends AppCompatActivity {
                 LayoutInflater inflater = getLayoutInflater();
                 View layout = inflater.inflate(R.layout.toastborder, (ViewGroup) findViewById(R.id.toast_layout_root));
 
-                TextView textView = (TextView) layout.findViewById(R.id.text);
+                TextView text = (TextView) layout.findViewById(R.id.text);
+                text.setText("모양을 바꾼 토스트");
 
+                Toast toast = new Toast(getApplicationContext()); //액티비티 스타일의 적용?
+                toast.setGravity(Gravity.CENTER, 0 , -100);
+                toast.setDuration(Toast.LENGTH_LONG);
+                toast.setView(layout);
 
+                toast.show();
+
+            }
+        });
+
+        Button button3 = (Button) findViewById(R.id.button3);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar.make(v, "스낵바 입니다. ", Snackbar.LENGTH_LONG).show();
 
             }
         });
