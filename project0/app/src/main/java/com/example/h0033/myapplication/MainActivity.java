@@ -3,9 +3,11 @@ package com.example.h0033.myapplication;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.GestureDetector;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     TextView textview;
@@ -93,5 +95,13 @@ public class MainActivity extends AppCompatActivity {
         textview.append(data + "\n");
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            Toast.makeText(this, "System back Button call", Toast.LENGTH_LONG).show();
 
+            return true;
+        }
+        return false;
+    }
 }
