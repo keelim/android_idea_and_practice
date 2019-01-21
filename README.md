@@ -73,4 +73,11 @@
      -  shape / snap bar를 사용을 한다.  
 3. 알림 대화 상자
     -  alert dialog snack bar > 
-
+4. 프로그레스 바 > 진행 상태를 보여주는 위젯
+    - 코드의 진행율 값?
+    - 중간 중간 사용하게 되는 경우는 많다. > 직접 dialog 를 구성을 하는 것도 
+        나쁘지 않다. 
+5. seek bar > seek bar Listener    
+6. 애니메이션 
+    - xml에서 애니메이션을 저장을 한다. 
+    - anim 폴더를 사용하여 xml 을 저장한다. 
