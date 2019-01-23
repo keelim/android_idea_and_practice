@@ -103,3 +103,8 @@
     - 메뉴와 툴바의 통합으로 이루어진다. > OptionMenu가 ActionBar 통합이 되어 있다.  > Context menu > 타이틀 부분의 통합이 되어 있다. 
     - res\menu >menu.xml 을 만든다. 
     - showAsAction > alwys 항상 작동을 하는 것
+
+##2019 01 24
+1. 
+2. 
+3. 
