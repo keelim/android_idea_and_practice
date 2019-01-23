@@ -36,4 +36,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void onFragmentChange(int index){
+        if(index == 0){
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
+        } else if(index == 1){
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment2).commit();
+        }
+    }
 }

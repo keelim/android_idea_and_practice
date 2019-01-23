@@ -10,7 +10,7 @@
 1. 동작은 자바 소스 파일 > activity - xml % activity 연결이 되어 진다.
 2. 인플레이션 xml 파일의 객체를 메모리화 하는 과정 (코드의 순서가 바뀌면 에러가 일어난다.)
 3. setContentView() > xml 메모리상에 객체화 하는 것 (Layoutinflater)
-4. LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE) >xml 을 객체화 시키기(부분화면)
+4. LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE) >xml 을 객체화 시키기(부분 화면)
 
 ##2019 01 15 TIL
 1. 어플리케이션을 구성 4가지 요소
@@ -93,4 +93,13 @@
      - xml, source > inflation과정을 진행을 해야 한다. 
      - xml > fragment를 추가를 하는 것 // 소스를 이용하여 추가를 하는 방법
      - 프래그먼트 매니저를 통하여 프래그 먼트를 추가를 한다. 
-    
+
+##2019 01 23 
+1. 프래그 먼트  > 그 안의 부분화면도 전환 효과를 볼 수 있다.  fragment manager 를 통하여 관리를 한다. 
+    - 메소드를 통하여 프래그 먼트를 바뀌어야 한다.
+    -  액티비티 메소드를 통하여 만든다. 
+    - 각각의 프래그 먼트를 독립적으로 사용을 할 수 있다. > 
+2. ActionBar 와 탭을 사용을 하기
+    - 메뉴와 툴바의 통합으로 이루어진다. > OptionMenu가 ActionBar 통합이 되어 있다.  > Context menu > 타이틀 부분의 통합이 되어 있다. 
+    - res\menu >menu.xml 을 만든다. 
+    - showAsAction > alwys 항상 작동을 하는 것
