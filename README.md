@@ -121,4 +121,8 @@
    * fragment 는 onCreateView 를 통하여 inflation을 해야 한다. &gt; ViewGroup 을 통하여 참조를 하고 참조된 값을 반환한다. 
    * 메인액티비티 자바소스에서 프래그 먼트를 선언을 하고 매니저를 통하여 트랜지액션을 한다.  &gt; commit 을 해야 한다. 
 2. 웹뷰의 사용?  &gt; Google. &gt; Toggle 
-3. 
+
+## 2019 01 25 TIL 
+
+1.  1
+2. 
