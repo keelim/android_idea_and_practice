@@ -133,4 +133,4 @@
      - 노트북으로 작업을 하는 경우 > Heap의 영역이 너무 많이 소요할 수 있다. > Settings > Build ... >Compiler >Command line >Xmx512m 으로 설정을 한다. 
 
 ## 2019 01 27 TIL 
-1. 
+1. 선택 위젯의 사용과 커스텀뷰 만들기 > 
