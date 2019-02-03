@@ -209,3 +209,14 @@
      
 ## 2019 02 03
 1. comply algorithm dictionary `sort algorithm`
+2. 카메라 객체를 사용하기
+    - `image ` 를 다루는 방법
+    - `scale type` > graphics matrix > matrix 를 통하여 이미지를 회전을 할 수 가 있다. 
+3.커버 플로우를 통한 갤러리 구현
+    - view page를 통한 구현
+    - graphics 소프트 웨어 카메라
+    - 뷰의 구성과 비슷하다. 
+    - 이미지의 회전이 가능 하다. 
+    - `translate(), rotate(), `
+    - 복합 위젯이라 어댑터를 사용을 해야 한다. 
+    - 카메라 객체를 통하여 회전과 기타 등을 할 수 가 있다. 
