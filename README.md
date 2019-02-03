@@ -207,7 +207,7 @@
      - 그리드 뷰는 어댑터를 설정을 하고 numColumns를 하여도 된다. > 색상 선택을 위한 그리드 뷰
      - 어댑터는 4가지의 필수 메소드가 있으면 리스트나 배열로 관리
      
-## 2019 02 03
+## 2019 02 03 TIL
 1. comply algorithm dictionary `sort algorithm`
 2. 카메라 객체를 사용하기
     - `image ` 를 다루는 방법
