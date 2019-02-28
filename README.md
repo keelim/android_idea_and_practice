@@ -246,3 +246,20 @@
 ## 2019 02 25 
 1. Hearing the lecture
      - Android
+## 2019 03 01
+1. rss 를 통한 뉴스정보를 가지고 오기
+     - <item>을 통하여 기사의 정보를 받을 수 있다. 
+     - 리스트 뷰를 가지고 뉴스를 가지고 올 수 있다. 
+     - 데이터를 파싱을 하는 방법 
+          - xml
+          - json > 웹페이에서 사용하는 자바스크립트 객체 파일 `main`
+          - Document Builder factory 빌더를 객체 이용 `Document`
+          - `DOM parser` > 웹 브라우저에게 DOM 객체를 통하여 브라우저가 파싱을 하는 것
+          - DOM 객체를 통하여 `getDocumentElement` 
+          - node의 개념을 통하여 분리가 되어 리턴을 하게 된다. 
+          - 태그를 기준으로 노드가 생성이 된다. 
+          - node를 분리를 해서 데이터를 생성을 하는 것이다. 
+          - `Thread`, `handling`을 통하여 뿌린다. > 라이브러리 이용 가능
+          - 메인은 `json`이기 때문에 json을 사용을 하는 것이 현명하다. 
+
+
