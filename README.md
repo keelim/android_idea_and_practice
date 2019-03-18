@@ -262,8 +262,30 @@
           - `Thread`, `handling`을 통하여 뿌린다. > 라이브러리 이용 가능
           - 메인은 `json`이기 때문에 json을 사용을 하는 것이 현명하다.
 
-## 2019 03 05
-1. 브로드캐스트 수신자
-     - SMS 문자
+## 2019 03 19 TIL 
+1. ContentProvider
+2. Service --> 액티비티와 반대되는 경향 (백그라운드 서비스)
+3. BroadcastReceiver (알림) --> 통신
+4. Activity --> 눈에 보일 때만
 
+액티비티 --> 창 (UI의 이벤트를 발생시킨다. )
+맥에서의 finder
+액티비티의 생명주기는 알고 있어야 한다.
+실행의 상태를 runtime 이라고 한다. 
+
+인텐트
+1. 인텐트는 의사소통을 책임
+2. 의사소통을 하는 규격 --> 변수와 정보들
+3. Intent 우편 배달부
+     - 액티비티 - 액티비티
+     - 앱 - 앱
+     - 다양한 것들을 섞어서 넣을 수 가 있다. 
+     - 종류
+          - 명시적
+          - <code>Intent intent  = new Intent(this, NewActivity.class);
+          startActivity(intent);</code>
+          - 암시적 (앱과 앱간의 통신에서는 사용을 한다. )
+          - <code>Intent sendIntent = new Intent();
+          sendIntent.setAction(Intent.ACTION_CALL);
+          startActivity(sendIntent)</code>
 
