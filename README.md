@@ -289,3 +289,32 @@
           sendIntent.setAction(Intent.ACTION_CALL);
           startActivity(sendIntent)</code>
 
+## 2019 03 20
+1. developer android.com
+2. 패키지 이름이 식별자가 된다. 
+     -  그래서 회사 이름이 자동으로 등록이 된다. 
+3. onCreated 를 작성을 한다. , manifest 설명문
+     - manifest 설정
+4. 런처 --> 첫 시작시 설정을 해주는 것
+5. logcat 을 통하여 설정이 가능하다. 
+6. 런처는 시작 액티비티를 사용한다. 
+7. 액티비티
+     - 중요한 클래스
+     - 생명주기를 갖고 있다. --> 자원관리를 위해서 사용을 한다. 
+     - onCreate()에서 액티비티 작성을 시작하자
+8. 인텐트
+     - 다른 액티비티를 시작할 수 있게 도와준다. --> 명시적
+     - 다른 앱을 실행 할 수 도 있다.  --> 암묵적 (시스템이 골라주는 것이다. )
+     - 자료를 넣어 보낼 수 있다. 
+9. 스튜디오     
+     - Logcat 에러 확인 --> 구글에서 확인
+     - http://developer.android.com/
+10. View
+      - 화면 그 자체
+      - Activit에 씌우는 화면 껍데기 --> 재활용 가능
+      - XML, JAVA 둘 중 하나로 작성 가능(보통 XML)
+      - Widget, Adapeter, Layout
+      
+
+      
+
