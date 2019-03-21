@@ -315,6 +315,24 @@
       - XML, JAVA 둘 중 하나로 작성 가능(보통 XML)
       - Widget, Adapeter, Layout
       
-
-      
+## 2019 03 21
+1. 용도가 뚜렷한 것들이 전부 Widget들이다. 
+     - TextView, Button, ImageView
+2. Adapter
+     - 위젯들을 묶은 것들을 여러가지를 보여줄 때
+     - 많은 정보를 길게 스크롤하며 나열할 때 많이 쓴다. 
+     - ListView, GridView, RecycleView
+     - 배열과 같은 형태들을 주로 사용한다. 
+3. Layout
+     - 담을 수 있는 틀
+     - 화면 공간을 배분할 때 많이 쓴다. 
+     - LinearLayout, RelativeLayout, FrameLayout
+4. 
+     - match-parent --> 상위하고 맞춘다. 
+     - wrap-content --> 하위의 맞춘다. 
+5. xml --> 거의 가드라인을 준다. 
+6. res/drawble
+7. 이미지 뷰를 코드로 접근을 해서 가지고 올 수 있다. 
+     - 코드 적으로 접근을 할 수 있다. 
+     - xml을 주로 한다. 
 
