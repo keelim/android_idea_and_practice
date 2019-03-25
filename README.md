@@ -368,3 +368,33 @@
      - raw/ 원시 형태로 저장하는 임의 파일
      - values 문자열 정수 및 색 같은 단순 값들이 저장
      * 리소스 파일은 res/ 아래 바로 저장하면 컴파일 오류가 걸림
+
+5. event driven
+     - 그래픽 같은 경우는 event driven을 통하여 동작을 한다. 
+     - A 버튼을 눌렀다. 
+     - B back key를 눌렀다. 
+     - C 인터넷이 끊겼다. 
+     - D 터치를 했다. 
+     - E 화면을 가로로 뒤집었다. 
+     - F 카톡이 왔다. 
+     - G 문자가 왔다. 
+     - H 전화가 왔다. 
+     - 배터리가 매우 부족하다. --> 15%알림 전부 Call Back함수
+     언제 발생할지 모르는 것을 --> Listener를 등록을 한다. 
+6. Listener은 인터페이스 이다. 
+7. Listener은 결국 콜백이다. 
+8. View 액티비티에 씌우는 껍데기 --> 모양을 씌우는 것이다. 
+     - 화면을 나타낸다. 
+9. View
+     - Widget
+          - TextView
+          - Image View
+     - Layout
+          - LinearLayout
+          - RelativeLayout
+          - FrameLayout
+     - Adapter View
+          - ListView
+          - GridView
+          - RecyclerView
+     - 상호 작용 --> 리스너 --> 콜백
