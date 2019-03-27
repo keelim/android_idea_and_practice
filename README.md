@@ -398,3 +398,19 @@
           - GridView
           - RecyclerView
      - 상호 작용 --> 리스너 --> 콜백
+
+## 2019 03 27
+1. Fragment    
+     - 만들어진 의도는 유연한 UI 제공
+     - 작은 Activity를 부모로 가진다. 
+     - Activity Multiple Fragment
+     - 코드를 나누는 측면에서는 편하다. 
+     - fragment 거의 독립된 객체
+2. Activity에 생명주기를 따르게 된다. 
+     - 부모의 생명주기를 거의 따른다. 
+     - onCreateView()
+3. 생성 기법
+     - xml --> 편리하다. 
+     - 코드적 기법 --> 언제든지 교체가 가능하다. 
+     - fragment 매니저를 사용을 해도
+     - 꼭 커밋을 사용을 해야 한다. 
