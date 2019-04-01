@@ -430,3 +430,15 @@
      - 코드적 기법 --> 언제든지 교체가 가능하다. 
      - fragment 매니저를 사용을 해도
      - 꼭 커밋을 사용을 해야 한다. 
+
+## 2019 04 01
+1. 프래그 먼트
+     - fragment 의 뷰를 만든다. 
+     - 부모의 생성 주기의 따른다. 
+2. onCreateView 를 통한다. 
+     - View 를 리턴을 하면 inflater.inflate(fragment, null);
+3. xml 
+     - id와 name 을 가지고 있어야 한다. 
+4. 코드적
+     - getSupportFragmentManager를 통하여
+     - getSupportFragmentManager.beginTrasiaction().add(R.layout.fragment, fragment).commit() 으로 추가한다. 
