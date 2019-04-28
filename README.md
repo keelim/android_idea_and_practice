@@ -441,4 +441,8 @@
      - id와 name 을 가지고 있어야 한다. 
 4. 코드적
      - getSupportFragmentManager를 통하여
-     - getSupportFragmentManager.beginTrasiaction().add(R.layout.fragment, fragment).commit() 으로 추가한다. 
+     - getSupportFragmentManager.beginTrasiaction().add(R.layout.fragment, fragment).commit() 으로 추가한다.
+     
+## 2019 04 28 TIL 
+1. ViewPager
+ 
