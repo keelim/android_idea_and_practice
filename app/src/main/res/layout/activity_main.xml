@@ -1,68 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context="com.keelim.aclass.MainActivity">
 
-
-    <LinearLayout
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_pager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-
-        android:weightSum="2">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            android:text="Time Line"
-            android:textSize="24dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            android:text="Untilted"
-            android:textSize="24dp" />
-
-    </LinearLayout>
-    <!--기준선 만드는 법-->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:background="#000000" />
-
-    <include layout="@layout/item_post" />
-
-<!--
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <include layout="@layout/item_post" />
-
-            <include layout="@layout/item_post" />
-
-            <include layout="@layout/item_post" />
-
-        </LinearLayout>
+        android:layout_height="match_parent"/>
 
 
-    </ScrollView>
--->
-
-
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

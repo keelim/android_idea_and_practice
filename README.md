@@ -445,4 +445,10 @@
      
 ## 2019 04 28 TIL 
 1. ViewPager
- 
+    - 하나의 페이지는 fragment로 구현을 한다. 
+2. Adapter
+    - 변환을 시키는 것 
+    - AdapterView 는 Adapter를 통하여 만들 수 있다. 
+    - Data --> Adapter --> AdapterView
+    - 데이터를 변환 시키는 것으로 생각을 하면 된다. 
+    - 자바 디자인 패턴 중 하나다. --> Builder pattern 하고 비슷한듯 하다.
