@@ -1,6 +1,8 @@
 package com.keelim.aclass;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -19,9 +21,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+
+
         ViewPager viewPager = (ViewPager) findViewById(R.id.vp_pager);
-
-
 
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(new Red());
@@ -31,9 +34,13 @@ public class MainActivity extends AppCompatActivity {
 
         MyPagerAdapter adapter = new MyPagerAdapter(getSupportFragmentManager(), fragments); //을 받아준다.
         viewPager.setAdapter(adapter);
+
+        tabLayout.setupWithViewPager(viewPager);
+
+
     }
 
-    private class MyPagerAdapter extends FragmentPagerAdapter{
+    private class MyPagerAdapter extends FragmentPagerAdapter {
 
         private ArrayList<Fragment> fragments;
 
@@ -50,6 +57,22 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             return 0;
+        }
+
+        @Nullable
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return "RED";
+                case 1:
+                    return "Yellow";
+                case 2:
+                    return "BLUE";
+                default:
+                    return "";
+            }
+
         }
     }
 

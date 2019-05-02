@@ -452,3 +452,21 @@
     - Data --> Adapter --> AdapterView
     - 데이터를 변환 시키는 것으로 생각을 하면 된다. 
     - 자바 디자인 패턴 중 하나다. --> Builder pattern 하고 비슷한듯 하다.
+    
+## 2019 04 30 TIL 
+1. SharedPreference  
+    - 간단한 값을 저장하는 기능
+    - 설정에서 사용을 하는 것
+    - 저장 값들을 외부 파일로 저장을 하는 것
+    - key-value 의 형태로 저장
+    - 앱의 최초 실행 유무를 체킹을 할 수 있다. 
+2. 2가지 단계를 나눈다. 
+    - 저장
+        - editor.putInt()
+        - editor.commit()
+    - 불러오기
+        - getResources().getInteger
+        - getInt().
+    - 최초 사용자의 여부 
+        - 불리언 값?
+    - SharedPreference 를 가지고 DB 만들기?
