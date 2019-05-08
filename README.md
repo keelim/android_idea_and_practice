@@ -431,7 +431,8 @@
      - fragment 매니저를 사용을 해도
      - 꼭 커밋을 사용을 해야 한다. 
 
-## 2019 04 01
+## 2019 04 0
+1
 1. 프래그 먼트
      - fragment 의 뷰를 만든다. 
      - 부모의 생성 주기의 따른다. 
@@ -470,3 +471,25 @@
     - 최초 사용자의 여부 
         - 불리언 값?
     - SharedPreference 를 가지고 DB 만들기?
+    
+
+## 2019 05 07 TIL 
+1. SharedPreference 구별 확인
+   - SharedPreference editor 가 있어서 저장을 따로 해주어야 한다.
+   <code>        SharedPreferences share = getPreferences(Context.MODE_PRIVATE);
+                 SharedPreferences.Editor editor = share.edit();
+                 editor.putInt(SHARED_PREF_FIRST_USER_KEY, 1);
+                 editor.commit();
+   </code>
+   - 앱 정보를 통하여 캐시와 데이터를 지우면 초기화 된다.
+2. Fragment + ViewPager
+    - 프레그 먼트를 View pager 를 통하여 움직이면서 확인을 할 수 있다.
+    - 어댑터 --> 변환을 하는 것이라 생각하면 된다.
+    - Preference key, value
+    - List, Map, Table, Dictionary
+    - json 에서 사용을 한다.
+    - 서버는 json 의 규격을 통하여 정보를 전달하게 된다.
+3. RecyclerView
+
+## 2019 05 08 TIL
+1. 동적인 페이지를 만들 것
