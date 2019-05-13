@@ -493,4 +493,21 @@
 
 ## 2019 05 08 TIL
 ## 2019 05 09 TIL
+## 2019 05 13 TIL 
+1. Recycler View
+    - ListView, GridView의 형태
+    - 타임라인의 성격을 갖는 것들을 구현을 한다.
+        - LinearLayoutManager
+        - GridLayout
+        - StaggeredLayout
+2. Recycler View Holder
+    - View Holder
+    - Cache -> 캐시 많이 쓰이거나 쓰일 것이라 예상되는 것들을 빨리 찾아 쓸 수 있는 곳에 미리 배치
+    - 빠르면 빠를 수록 비싸진다.
+    - 가격 대비 성능 캐싱 기법으로 
+    - findViewById 생각보다 댓가가 큰 메소드이다. 
+    - 미리 뷰를 찾아놓고 캐시를 하는 것
+3. Recycler View Adapter
+    - RecyclerView 만을 위한 어댑터
+    - <뷰홀더> 를 갖고 있는 어댑터
     
