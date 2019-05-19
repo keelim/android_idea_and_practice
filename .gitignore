@@ -13,5 +13,4 @@
 .externalNativeBuild
 /.idea
 app/src/main/res/layout/Shared/
-myapplication/
 practice1/libs/

@@ -491,8 +491,6 @@
     - 서버는 json 의 규격을 통하여 정보를 전달하게 된다.
 3. RecyclerView
 
-## 2019 05 08 TIL
-## 2019 05 09 TIL
 ## 2019 05 13 TIL 
 1. Recycler View
     - ListView, GridView의 형태
@@ -510,4 +508,44 @@
 3. Recycler View Adapter
     - RecyclerView 만을 위한 어댑터
     - <뷰홀더> 를 갖고 있는 어댑터
+
+## 2019 05 19 TIL 
+1. selector 를 이용하여 xml 방식으로 작동을 할 수 있다. 
+    - button on, button off
+    - drawable 에서 사용을 한다.
+    - 굳이 이미지를 직접적으로 import 하지 않아도 된다.?
+    - 코드로 다양한 상태 이미지를 알 수 있다. <selector>
+2. 리싸이클러 뷰
+    - data, holder, adapter
+    - adapter layout manager 가 필요하다.
+    - 같은 형식의 자료들을 스크롤 형식으로 만들고 싶을 때는 RecyclerView를 사용하는 것이 답
+    - findView 많이 안하기 위해서 ViewHolder 에 저장을 하는 것이다. 
+3. 쓰레드를 사용을 하는 법
+    - 동기화 사용을 하는 것
+    - Thread 작업의 흐름
+    - main/UI
+    - 멀티 쓰레딩 -> main Thread 
+    - 일을 나누는 것으로 생각 -> 일은 한정 되어 있다.
+    - 너무 많이 사용하는 것도 부담이 될 수 있다. 
+4. UI thread
+    - UI Drawing --> 5초동안 반응이 없으면 꺼버린다. ANR (android no response)
+    - TouchEvent
+    //아래 2개는 특별히 하나로 사용할 필요가 없다. 
+    - Huge Calculation
+    - Internet
+5. 쓰레드 2가지 구현법
+    -  Thread java class 
+        - Handler 객체로 값을 보낸다. 
+    -  Handler android class
+        - Handler 를 통하여 구현을 한다. 
+    - AsyncTask (사용하는 것이 편한다.)
+        - Thread, Task 를 2가지를 전부 포함된다. 
+6. AsyncTask
+    - 새로운 쓰레드를 생성해서 작업
+    - 코드 간결해서 많이 쓰인다. 
+    - 가변형으로 파라미터를 받을 수 있다.
+    - doInBackground -- added thread
+    - onPostExecute -- UI thread
+    
+     
     
