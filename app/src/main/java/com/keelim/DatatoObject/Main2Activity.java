@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.layout.R;
@@ -12,7 +13,7 @@ import com.keelim.DatatoObject.model.PostItem;
 import java.util.ArrayList;
 
 public class Main2Activity extends AppCompatActivity {
-
+    private ImageView images;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +29,13 @@ public class Main2Activity extends AppCompatActivity {
         rvList.setLayoutManager(new LinearLayoutManager(this, LinearLayout.VERTICAL, false));
         rvList.setAdapter(adapter);
 
+
+
+        startLoadingimage();
+    }
+
+    private void startLoadingimage() {
+        String url = "sdsd";
     }
 
 

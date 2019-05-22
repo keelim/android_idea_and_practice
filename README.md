@@ -547,5 +547,23 @@
     - doInBackground -- added thread
     - onPostExecute -- UI thread
     
-     
+## 2019 05 20 TIL 
+1. AsyncTask
+    - doInBackground --> added thread 에서 실행
+    - 나머지는 UI thread 에서 실행
+    - 작동되는 원리는 대충 알겠다. 
+    - 객체를 만들고 execute() 메소드를 실행
+    - java thread run() 같은 역할이라 생각
+2. 이미지 라이브러리 image library
+    - 거의 필수로 사용하는 것이라 생각을 하면 된다. 
+    - HTTP Client 기능
+    - 디스크, 메모리 캐시 기능
+    - 이미지 처리 기능
+    - 상용에서는 이미지와 같은 기능들을 잘되어 있어야 한다.
+    - 다운로드를 다시 불러오지 않아야 한다.
+    - LRU 캐시 알고리즘을 사용을 한다. 
+    - 고해상도 이미지를 줄여서 사용을 해야 한다. 
+        -  out of memory
+        -  썸네일 제작 --> 이미지 처리 기능
+    - Glide 를 사용을 하는 것이 낫다.?
     
