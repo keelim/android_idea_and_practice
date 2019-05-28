@@ -1,4 +1,4 @@
-package com.keelim.kee_limcore;
+package com.keelim.Kee_limCore;
 
 import androidx.appcompat.app.AppCompatActivity;
 

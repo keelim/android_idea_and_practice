@@ -1,4 +1,4 @@
-package com.keelim.kee_limcore;
+package com.keelim.Kee_limCore;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.keelim.kee_limcore", appContext.getPackageName());
+        assertEquals("com.keelim.Kee_limCore", appContext.getPackageName());
     }
 }
