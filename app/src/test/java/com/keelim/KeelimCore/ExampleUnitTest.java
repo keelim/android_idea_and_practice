@@ -1,4 +1,4 @@
-package com.keelim.Kee_limCore;
+package com.keelim.KeelimCore;
 
 import org.junit.Test;
 
