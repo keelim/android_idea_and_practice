@@ -40,8 +40,23 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu); //menu 를 load 한다.
+        getMenuInflater().inflate(R.menu.menu_main, menu); //menu 를 load 한다.
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.action_settings:
+                Intent intent_setting = new Intent(getApplicationContext(), SettingActivity.class);
+                startActivity(intent_setting);
+                break;
+            case R.id.action_developer:
+                Intent intent_developer = new Intent(getApplicationContext(), DeveloperPageActivity.class);
+                startActivity(intent_developer);
+                break;
+        }
+        return true;
+    }
 }

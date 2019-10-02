@@ -25,9 +25,4 @@ public class WordDefinitionDetailActivity extends Activity {
         return getIntent().getStringExtra(s);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.word_definition_detail, menu);
-        return true;
-    }
 }
