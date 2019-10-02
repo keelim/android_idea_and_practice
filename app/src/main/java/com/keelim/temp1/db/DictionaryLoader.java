@@ -11,12 +11,10 @@ import java.util.ArrayList;
 public class DictionaryLoader { //파일을 로더 하는 것 데이터 베이스로 바꿀 필요가 있다.
 
     public static void loadData(BufferedReader bufferedReader, DictionaryDatabaseHelper dictionaryDatabaseHelper) {
-        String logTagString = "DICTIONARY";
         ArrayList<WordDefinition> allWords = new ArrayList<>();
 
         try {
             try {
-                Log.d(logTagString, "Inside loader");
                 int c;
                 c = bufferedReader.read();
                 while (c != (-1)) {
@@ -50,7 +48,6 @@ public class DictionaryLoader { //파일을 로더 하는 것 데이터 베이�
                         }
                     }
                     wordString = wordString.trim();
-                    Log.d(logTagString, "Setting definition");
                     allWords.add(new WordDefinition(wordString, definition));
                 }
             } catch (IOException e) {

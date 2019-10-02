@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -33,7 +32,7 @@ public class DictionaryListActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dictionary_list);
+        setContentView(R.layout.activity_dictionarylist);
 
         allWordDefinitions = new ArrayList<>();
         searchEditText = findViewById(R.id.searchEditText);
@@ -50,17 +49,13 @@ public class DictionaryListActivity extends Activity {
         SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.SHARED_NAME_STRING, MODE_PRIVATE);
 
         boolean initialized = sharedPreferences.getBoolean("initialized", false);
-        String logTagString = "DICTIONARY";
+
 
         if (!initialized) {
-            Log.d(logTagString, "initializing for the first time");
             initializeDatabase();
-            Log.d(logTagString, "initialized");
             sharedPreferences.edit()
                     .putBoolean("initialized", true)
                     .apply();
-        } else {
-            Log.d(logTagString, "db already initialized");
         }
 
         allWordDefinitions = myDictionaryDatabaseHelper.getAllWords();
