@@ -16,11 +16,8 @@ public class DictionaryDatabaseHelper extends SQLiteOpenHelper {
     private final static String ITEM_ID_COLUMN = "id";
     private final static String WORD_COLUMN = "word";
     private final static String DEFINITION_COLUMN = "definition";
-    private final static String ON_UPGRADE_QUERY = "DROP TABLE " + DICTIONARY_DATABASE;
-    private final static String CREATE_DATABASE_QUERY = "CREATE TABLE " + DICTIONARY_DATABASE + " ( " +
-            ITEM_ID_COLUMN + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            WORD_COLUMN + " TEXT , " +
-            DEFINITION_COLUMN + " TEXT)";
+    private final static String ON_UPGRADE_QUERY = "DROP TABLE dictionary";
+    private final static String CREATE_DATABASE_QUERY = "CREATE TABLE dictionary ( id INTEGER PRIMARY KEY AUTOINCREMENT, word TEXT , definition TEXT)";
 
 
     public DictionaryDatabaseHelper(Context context,
@@ -72,7 +69,7 @@ public class DictionaryDatabaseHelper extends SQLiteOpenHelper {
         ArrayList<WordDefinition> arrayList = new ArrayList<>();
         SQLiteDatabase database = this.getReadableDatabase();
 
-        String selectAllQueryString = "SELECT * FROM " + DICTIONARY_DATABASE;
+        String selectAllQueryString = "SELECT * FROM dictionary";
         Cursor cursor = database.rawQuery(selectAllQueryString, null);
 
         if (cursor.moveToFirst()) {
@@ -88,7 +85,7 @@ public class DictionaryDatabaseHelper extends SQLiteOpenHelper {
     public ArrayList<String> getWords() {
         ArrayList<String> arrayList = new ArrayList<>();
         SQLiteDatabase database = this.getReadableDatabase();
-        String selectWordColumn = "SELECT " + WORD_COLUMN + " FROM " + DICTIONARY_DATABASE;
+        String selectWordColumn = "SELECT word FROM dictionary";
         try (Cursor cursor = database.rawQuery(selectWordColumn, null)) {
             if (cursor.moveToFirst()) {
                 do {

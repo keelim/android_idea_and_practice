@@ -22,23 +22,19 @@ public class WordDefinition {
         this.definition = definition;
     }
 
-    public WordDefinition(String word, ArrayList<String> allDefinition) {
-        setWord(word);
-		StringBuilder stringBuilder = processStringBuilder(allDefinition);
-		setDefinition(stringBuilder.toString());
-    }
-
-	private StringBuilder processStringBuilder(ArrayList<String> allDefinition) {
-		StringBuilder stringBuilder = new StringBuilder();
-
-		for (String string : allDefinition) {
-			stringBuilder.append(string);
-		}
-		return stringBuilder;
-	}
-
-	public WordDefinition(String word, String allDefinition) {
+    public WordDefinition(String word, String allDefinition) {
         this.word = word;
         this.definition = allDefinition;
+    }
+
+    public WordDefinition(String word, ArrayList<String> allDefinition) {
+        setWord(word);
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (String string : allDefinition) {
+            stringBuilder.append(string);
+        }
+
+		setDefinition(stringBuilder.toString());
     }
 }

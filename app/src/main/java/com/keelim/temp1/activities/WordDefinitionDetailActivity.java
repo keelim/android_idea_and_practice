@@ -3,26 +3,31 @@ package com.keelim.temp1.activities;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
-import android.widget.TextView;
+
+import androidx.databinding.DataBindingUtil;
 
 import com.keelim.temp1.R;
+import com.keelim.temp1.databinding.ActivityWordDefinitionDetailBinding;
 
 public class WordDefinitionDetailActivity extends Activity {
+    ActivityWordDefinitionDetailBinding binding;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_word_definition_detail);
-		TextView wordTextView = findViewById(R.id.wordTextView);
-		TextView definitionTextView = findViewById(R.id.definitionTextView);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_word_definition_detail);
+        binding.setActivity(this);
+        binding.wordTextView.setText(getStrings("word")); //인텐트 정보 받아오기
+        binding.definitionTextView.setText(getStrings("definition"));
+    }
 
-		wordTextView.setText(getIntent().getStringExtra("word")); //인텐트 정보 받아오기
-		definitionTextView.setText(getIntent().getStringExtra("definition"));
-	}
+    private String getStrings(String s) {
+        return getIntent().getStringExtra(s);
+    }
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.word_definition_detail, menu);
-		return true;
-	}
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.word_definition_detail, menu);
+        return true;
+    }
 }

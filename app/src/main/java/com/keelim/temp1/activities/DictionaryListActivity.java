@@ -4,19 +4,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.databinding.DataBindingUtil;
+
 import com.keelim.temp1.R;
+import com.keelim.temp1.databinding.ActivityDictionarylistBinding;
 import com.keelim.temp1.db.DictionaryDatabaseHelper;
 import com.keelim.temp1.db.DictionaryLoader;
+import com.keelim.temp1.utils.DictionaryAdapter;
 import com.keelim.temp1.utils.WordDefinition;
 
 import java.io.BufferedReader;
@@ -25,98 +22,52 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class DictionaryListActivity extends Activity {
-    private AutoCompleteTextView searchEditText;
+    private ActivityDictionarylistBinding binding;
     private ArrayList<WordDefinition> allWordDefinitions;
     private DictionaryDatabaseHelper myDictionaryDatabaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dictionarylist);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_dictionarylist);
+        binding.setActivity(this);
 
-        allWordDefinitions = new ArrayList<>();
-        searchEditText = findViewById(R.id.searchEditText);
-        Button searchButton = findViewById(R.id.searchButton);
-        ListView dictionaryListView = findViewById(R.id.dictionaryListView);
-        TextView userTextView = findViewById(R.id.personTextView);
-
-
-        Intent intent = getIntent();
-        String temp = intent.getStringExtra("user");
-        userTextView.setText(temp + "'s Dictionary");
-
+        binding.personTextView.setText(getIntent().getStringExtra("user") + "'s Dictionary");
         myDictionaryDatabaseHelper = new DictionaryDatabaseHelper(this, null, 1);
         SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.SHARED_NAME_STRING, MODE_PRIVATE);
 
         boolean initialized = sharedPreferences.getBoolean("initialized", false);
-
-
         if (!initialized) {
-            initializeDatabase();
+            InputStream inputStream = getResources().openRawResource(R.raw.glossary);
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            DictionaryLoader.loadData(bufferedReader, myDictionaryDatabaseHelper);
             sharedPreferences.edit()
                     .putBoolean("initialized", true)
                     .apply();
         }
 
         allWordDefinitions = myDictionaryDatabaseHelper.getAllWords();
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, myDictionaryDatabaseHelper.getWords());
+        binding.searchEditText.setAdapter(adapter);
 
-        ArrayList<String> strings = myDictionaryDatabaseHelper.getWords();
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, strings);
-        searchEditText.setAdapter(adapter);
-
-        dictionaryListView.setAdapter(new BaseAdapter() { //따로 뺼수 있는 방법이 있는가?
-            @Override
-            public View getView(int position, View view, ViewGroup arg2) {
-                if (view == null) {
-                    view = getLayoutInflater().inflate(R.layout.list_item, null);
-                }
-
-                TextView textView = view.findViewById(R.id.listItemTextView);
-                textView.setText(allWordDefinitions.get(position).word);
-
-                return view;
-            }
-
-            @Override
-            public long getItemId(int arg0) {
-                return 0;
-            }
-
-            @Override
-            public Object getItem(int arg0) {
-                return null;
-            }
-
-            @Override
-            public int getCount() {
-                return allWordDefinitions.size();
-            }
-        });
-
-        dictionaryListView.setOnItemClickListener((arg0, view, position, arg3) -> {
+        binding.dictionaryListView.setAdapter(new DictionaryAdapter(this, allWordDefinitions));
+        binding.dictionaryListView.setOnItemClickListener((adapterView, view, i, l) -> {
             Intent detail = new Intent(DictionaryListActivity.this, WordDefinitionDetailActivity.class);
-            detail.putExtra("word", allWordDefinitions.get(position).word);
-            detail.putExtra("definition", allWordDefinitions.get(position).definition);
+            detail.putExtra("word", allWordDefinitions.get(i).word);
+            detail.putExtra("definition", allWordDefinitions.get(i).definition);
             startActivity(detail);
         });
 
-        searchButton.setOnClickListener(v -> {
-            String string = searchEditText.getText().toString();
-            WordDefinition wordDefinition = myDictionaryDatabaseHelper.getWordDefinition(string);
+        binding.searchButton.setOnClickListener(v -> {
+            WordDefinition wordDefinition = myDictionaryDatabaseHelper.getWordDefinition(binding.searchEditText.getText().toString());
             if (wordDefinition == null) {
                 Toast.makeText(getApplicationContext(), "Word not found", Toast.LENGTH_LONG).show();
             } else {
-                Intent intent1 = new Intent(this, WordDefinitionDetailActivity.class);
-                intent1.putExtra("word", wordDefinition.word);
-                intent1.putExtra("definition", wordDefinition.definition);
-                startActivity(intent1);
+                Intent intent_detail = new Intent(this, WordDefinitionDetailActivity.class);
+                intent_detail.putExtra("word", wordDefinition.word);
+                intent_detail.putExtra("definition", wordDefinition.definition);
+                startActivity(intent_detail);
             }
         });
-    }
-
-    private void initializeDatabase() {
-        InputStream inputStream = getResources().openRawResource(R.raw.glossary);
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-        DictionaryLoader.loadData(bufferedReader, myDictionaryDatabaseHelper);
     }
 }
