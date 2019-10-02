@@ -40,7 +40,7 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu); //menu를 load 한다.
+        getMenuInflater().inflate(R.menu.main, menu); //menu 를 load 한다.
         return true;
     }
 

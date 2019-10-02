@@ -69,7 +69,7 @@ public class DictionaryDatabaseHelper extends SQLiteOpenHelper {
     }
 
     public ArrayList<WordDefinition> getAllWords() {
-        ArrayList<WordDefinition> arrayList = new ArrayList<WordDefinition>();
+        ArrayList<WordDefinition> arrayList = new ArrayList<>();
         SQLiteDatabase database = this.getReadableDatabase();
 
         String selectAllQueryString = "SELECT * FROM " + DICTIONARY_DATABASE;
