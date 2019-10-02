@@ -3,24 +3,42 @@ package com.keelim.temp1.utils;
 import java.util.ArrayList;
 
 public class WordDefinition {
-	public String word,definition;
-	
-	public WordDefinition(String word,ArrayList<String> alldefinition) {
-		this.word=word;
-		
-		StringBuilder stringBuilder=new StringBuilder();
-		for (String string : alldefinition) {
+    public String word;
+    public String definition;
+
+    public String getWord() {
+        return word;
+    }
+
+    public void setWord(String word) {
+        this.word = word;
+    }
+
+    public String getDefinition() {
+        return definition;
+    }
+
+    public void setDefinition(String definition) {
+        this.definition = definition;
+    }
+
+    public WordDefinition(String word, ArrayList<String> allDefinition) {
+        setWord(word);
+		StringBuilder stringBuilder = processStringBuilder(allDefinition);
+		setDefinition(stringBuilder.toString());
+    }
+
+	private StringBuilder processStringBuilder(ArrayList<String> allDefinition) {
+		StringBuilder stringBuilder = new StringBuilder();
+
+		for (String string : allDefinition) {
 			stringBuilder.append(string);
-		}		
-		this.definition=stringBuilder.toString();
-		
+		}
+		return stringBuilder;
 	}
-	
-	public WordDefinition(String word,String alldefinition) {
-		this.word=word;		
-		this.definition=alldefinition;
-		
-	}
-	
-	
+
+	public WordDefinition(String word, String allDefinition) {
+        this.word = word;
+        this.definition = allDefinition;
+    }
 }

@@ -1,8 +1,7 @@
-package com.keelim.temp1.activity;
+package com.keelim.temp1.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.widget.TextView;
 
@@ -10,30 +9,20 @@ import com.keelim.temp1.R;
 
 public class WordDefinitionDetailActivity extends Activity {
 
-	TextView wordTextView;
-	TextView definitionTextView;
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_word_definition_detail);
-		wordTextView=(TextView) findViewById(R.id.wordTextView);
-		definitionTextView=(TextView) findViewById(R.id.definitionTextView);
-	
-		Log.d("DICTIONARY", "third activity started");
-		
-		
-		
-		wordTextView.setText(getIntent().getStringExtra("word"));
+		TextView wordTextView = findViewById(R.id.wordTextView);
+		TextView definitionTextView = findViewById(R.id.definitionTextView);
+
+		wordTextView.setText(getIntent().getStringExtra("word")); //인텐트 정보 받아오기
 		definitionTextView.setText(getIntent().getStringExtra("definition"));
-		
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.word_definition_detail, menu);
 		return true;
 	}
-
 }

@@ -8,11 +8,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class DictionaryLoader {
+public class DictionaryLoader { //파일을 로더 하는 것 데이터 베이스로 바꿀 필요가 있다.
 
     public static void loadData(BufferedReader bufferedReader, DictionaryDatabaseHelper dictionaryDatabaseHelper) {
         String logTagString = "DICTIONARY";
-        ArrayList<WordDefinition> allWords = new ArrayList<WordDefinition>();
+        ArrayList<WordDefinition> allWords = new ArrayList<>();
 
         try {
             BufferedReader fileReader = bufferedReader;
@@ -27,56 +27,46 @@ public class DictionaryLoader {
                         try {
                             stringBuilder.append((char) c);
                         } catch (Exception e) {
-                            // TODO Auto-generated catch block
                             System.out.println(stringBuilder.length());
-                            //e.printStackTrace();
+                            Log.e("error", e.getMessage());
                         }
-
                         c = fileReader.read();
                     }
                     String wordString = stringBuilder.toString();
-                    ArrayList<String> definition = new ArrayList<String>();
+                    ArrayList<String> definition = new ArrayList<>();
 
                     while (c == 10 ) {
                         c = fileReader.read();
-                        //Log.d(logTagString, "Definition first: "+String.valueOf(c));
                         if ((c != 10 && c != 13)&& c!=-1) {
                             StringBuilder stringBuilder2 = new StringBuilder();
                             while (c != 10 && c!=-1) {
                                 stringBuilder2.append((char) c);
                                 c = fileReader.read();
                             }
-//                            Log.d(logTagString, "inside if: "+String.valueOf(c));
                             String definitionString = stringBuilder2.toString();
-//                            Log.d(logTagString,"Add line");
                             definition.add(definitionString);
                         } else {
                             c = fileReader.read();
                             c = fileReader.read();
-//                            Log.d(logTagString,"else: " + String.valueOf(c));
                             break;
                         }
                     }
-//                    c = fileReader.read();
                     wordString = wordString.trim();
                     Log.d(logTagString,"Setting definition");
                     allWords.add(new WordDefinition(wordString, definition));
                 }
             } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                Log.e("error", e.getMessage());
             }
             try {
-
                 dictionaryDatabaseHelper.initializeDatabaseFortheFirstTime(allWords);
                 fileReader.close();
+
             } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                Log.e("error", e.getMessage());
             }
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            Log.e("error", e.getMessage());
         }
 
     }
