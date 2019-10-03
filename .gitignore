@@ -26,6 +26,7 @@ app/libs
 *.pro
 app/src/test
 app/src/androidTest
+app/build
 
 
 

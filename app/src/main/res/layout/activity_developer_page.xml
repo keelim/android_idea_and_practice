@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
         <variable
             name="activity"
             type="com.keelim.temp1.activities.DeveloperPageActivity" />
@@ -18,4 +19,5 @@
             android:layout_height="match_parent" />
 
     </LinearLayout>
+
 </layout>

@@ -3,7 +3,7 @@ package com.keelim.temp1.utils;
 import android.app.Activity;
 import android.widget.FrameLayout;
 
-import com.keelim.arducon.R;
+import com.keelim.temp1.R;
 import com.vansuita.materialabout.builder.AboutBuilder;
 import com.vansuita.materialabout.views.AboutView;
 
