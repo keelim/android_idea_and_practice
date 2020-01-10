@@ -6,10 +6,12 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import com.google.firebase.analytics.FirebaseAnalytics
 
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    private var mFirebaseAnalytics: FirebaseAnalytics? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +22,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, TempActivity::class.java)
             startActivity(intent)
         }
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
