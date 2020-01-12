@@ -13,7 +13,7 @@ import com.keelim.timechecker.interfaces.IMyCounterService
 import com.keelim.timechecker.services.MyCounterService
 import kotlinx.android.synthetic.main.activity_temp.*
 
-class TempActivity : AppCompatActivity() {
+class TimerActivity : AppCompatActivity() {
     private var running = true
     private var binder: IMyCounterService? = null
     private val connection: ServiceConnection = object : ServiceConnection {

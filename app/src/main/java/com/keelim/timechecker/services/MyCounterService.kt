@@ -12,16 +12,6 @@ class MyCounterService : Service() {
     private var num_count = 0
     private var isStop = false
     var binder: IMyCounterService.Stub = object : IMyCounterService.Stub() {
-        @Throws(RemoteException::class)
-        override fun basicTypes(
-            anInt: Int,
-            aLong: Long,
-            aBoolean: Boolean,
-            aFloat: Float,
-            aDouble: Double,
-            aString: String
-        ) {
-        }
 
         @Throws(RemoteException::class)
         override fun getCount(): Int {
@@ -55,6 +45,7 @@ class MyCounterService : Service() {
             num_count = 0
             while (num_count < 50) {
                 if (isStop) break
+
                 handler.post {
                     Toast.makeText(
                         applicationContext,

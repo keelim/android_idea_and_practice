@@ -14,30 +14,23 @@ import kotlinx.android.synthetic.main.activity_ad_mob.*
 class AdMobActivity : AppCompatActivity() {
 
     private var currentLevel: Int = 0
-    private var interstitialAd: InterstitialAd? = null
+    private lateinit var interstitialAd: InterstitialAd
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ad_mob)
 
-        // Create the next level button, which tries to show an interstitial when clicked.
         next_level_button.isEnabled = false
         next_level_button.setOnClickListener { showInterstitial() }
 
-        // Create the text view to show the level number.
-
-
-        // Create the InterstitialAd and set the adUnitId (defined in values/strings.xml).
         interstitialAd = newInterstitialAd()
         loadInterstitial()
 
-        // Toasts the test ad message on the screen. Remove this after defining your own ad unit ID.
         Toast.makeText(this, "hello", Toast.LENGTH_LONG).show()
     }
 
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_ad_mob, menu)
         return true
     }
@@ -69,9 +62,8 @@ class AdMobActivity : AppCompatActivity() {
     }
 
     private fun showInterstitial() {
-        // Show the ad if it's ready. Otherwise toast and reload the ad.
-        if (interstitialAd?.isLoaded == true) {
-            interstitialAd?.show()
+        if (interstitialAd.isLoaded) {
+            interstitialAd.show()
         } else {
             Toast.makeText(this, "Ad did not load", Toast.LENGTH_SHORT).show()
             goToNextLevel()
@@ -84,7 +76,7 @@ class AdMobActivity : AppCompatActivity() {
         val adRequest = AdRequest.Builder()
             .setRequestAgent("android_studio:ad_template")
             .build()
-        interstitialAd?.loadAd(adRequest)
+        interstitialAd.loadAd(adRequest)
     }
 
     private fun goToNextLevel() {

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.keelim.timechecker">
 
-    <!-- Include required permissions for Google Mobile Ads to run. -->
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -13,10 +13,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".CountUpActivity"
+            android:label="@string/title_activity_count_up"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AdMobActivity"
-            android:label="@string/title_activity_ad_mob"></activity>
-        <!-- Include the AdActivity configChanges and theme. -->
+            android:label="@string/title_activity_ad_mob" /> <!-- Include the AdActivity configChanges and theme. -->
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
@@ -33,12 +37,12 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TempActivity" />
-        <activity android:name=".SplashActivity" />
+        <activity android:name=".TimerActivity" />
+        <activity android:name=".SplashActivity">
+            <category android:name="android.intent.category.LAUNCHER" />
+        </activity>
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
