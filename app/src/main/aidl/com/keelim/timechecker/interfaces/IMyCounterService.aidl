@@ -1,13 +1,8 @@
 // IMyCounterService.aidl
 package com.keelim.timechecker.interfaces;
 
-// Declare any non-default types here with import statements
+interface IMyCounterService { //aidl 다시 알아볼 것
 
-interface IMyCounterService {
-    /**
-     * Demonstrates some basic types that you can use as parameters
-     * and return values in AIDL.
-     */
     void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat,
             double aDouble, String aString);
 
