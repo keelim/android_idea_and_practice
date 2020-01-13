@@ -3,21 +3,24 @@
     package="com.keelim.timechecker">
 
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <application
         android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity
-            android:name=".CountUpActivity"
-            android:label="@string/title_activity_count_up"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AdMobActivity"
             android:label="@string/title_activity_ad_mob" /> <!-- Include the AdActivity configChanges and theme. -->
@@ -28,25 +31,24 @@
 
         <service
             android:name=".services.MyCounterService"
-            android:enabled="true"
-            android:exported="true" />
+            android:enabled="true" />
 
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name=".SplashActivity">
             <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
-        </activity>
-        <activity android:name=".TimerActivity" />
-        <activity android:name=".SplashActivity">
-            <category android:name="android.intent.category.LAUNCHER" />
         </activity>
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/ADMOB_APP_ID" />
+
     </application>
 
 </manifest>
