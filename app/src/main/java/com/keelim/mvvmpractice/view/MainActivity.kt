@@ -20,7 +20,6 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
     private val mainSearchRecyclerViewAdapter: MainSearchRecyclerViewAdapter by inject()
 
 
-
     override fun initStartView() {
         main_activity_search_recycler_view.run {
             adapter = mainSearchRecyclerViewAdapter
@@ -34,7 +33,7 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
 
     override fun initDataBinding() {
         viewModel.imageSearchResponseLiveData.observe(this, Observer {
-            it.documents.forEach {document ->
+            it.documents.forEach { document ->
                 mainSearchRecyclerViewAdapter.addImageItem(document.image_url, document.doc_url)
             }
             mainSearchRecyclerViewAdapter.notifyDataSetChanged()

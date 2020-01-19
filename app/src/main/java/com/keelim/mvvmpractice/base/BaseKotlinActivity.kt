@@ -6,7 +6,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.google.android.material.snackbar.Snackbar
 
-abstract class BaseKotlinActivity<T: ViewDataBinding, R: BaseKotlinViewModel>: AppCompatActivity(){
+abstract class BaseKotlinActivity<T : ViewDataBinding, R : BaseKotlinViewModel> :
+    AppCompatActivity() {
     lateinit var viewDataBinding: T
 
     abstract val layoutResourceId: Int
@@ -30,12 +31,12 @@ abstract class BaseKotlinActivity<T: ViewDataBinding, R: BaseKotlinViewModel>: A
         initAfterBinding()
     }
 
-    private fun snackbarObserving(){
-        viewModel.observeSnackbarMessage(this){
+    private fun snackbarObserving() {
+        viewModel.observeSnackbarMessage(this) {
             Snackbar.make(findViewById(android.R.id.content), it, Snackbar.LENGTH_LONG).show()
         }
 
-        viewModel.observeSnackbarMessageStr(this){
+        viewModel.observeSnackbarMessageStr(this) {
             Snackbar.make(findViewById(android.R.id.content), it, Snackbar.LENGTH_LONG).show()
         }
     }
