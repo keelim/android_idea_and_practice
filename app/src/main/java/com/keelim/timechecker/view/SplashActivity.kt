@@ -1,9 +1,10 @@
-package com.keelim.timechecker
+package com.keelim.timechecker.view
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
+import com.keelim.timechecker.R
 
 
 class SplashActivity : AppCompatActivity() {

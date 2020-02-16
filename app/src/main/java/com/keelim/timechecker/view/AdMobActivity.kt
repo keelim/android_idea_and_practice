@@ -1,4 +1,4 @@
-package com.keelim.timechecker
+package com.keelim.timechecker.view
 
 import android.os.Bundle
 import android.view.Menu
@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
+import com.keelim.timechecker.R
 import kotlinx.android.synthetic.main.activity_ad_mob.*
 
 

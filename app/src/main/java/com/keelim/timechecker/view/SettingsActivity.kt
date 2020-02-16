@@ -1,9 +1,10 @@
-package com.keelim.timechecker
+package com.keelim.timechecker.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import com.keelim.timechecker.R
 
 
 class SettingsActivity : AppCompatActivity(),
@@ -15,7 +16,10 @@ class SettingsActivity : AppCompatActivity(),
         if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.settings, HeaderFragment())
+                .replace(
+                    R.id.settings,
+                    HeaderFragment()
+                )
                 .commit()
         } else {
             title = savedInstanceState.getCharSequence("TITLE_TAG")

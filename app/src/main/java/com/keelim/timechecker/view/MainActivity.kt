@@ -1,4 +1,4 @@
-package com.keelim.timechecker
+package com.keelim.timechecker.view
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.keelim.timechecker.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var handler: TimerHandler
     private lateinit var mFirebaseAnalytics: FirebaseAnalytics
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -58,10 +60,14 @@ class MainActivity : AppCompatActivity() {
                 btn_pause!!.text = "시작"
             }
         }
+
+
+
     }
 
 
     private inner class TimerThread : Runnable {
+        @SuppressLint("SetTextI18n")
         override fun run() {
             var i = 0
             while (true) {
