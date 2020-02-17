@@ -2,29 +2,31 @@ package com.keelim.timechecker.error
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import com.keelim.timechecker.R
-import com.keelim.timechecker.databinding.ActivityErrorBinding
+import kotlinx.android.synthetic.main.activity_error.*
 
 
 class ErrorActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityErrorBinding
+
 
     private val lastActivityIntent by lazy { intent.getParcelableExtra<Intent>(EXTRA_INTENT) }
     private val errorText by lazy { intent.getStringExtra(EXTRA_ERROR_TEXT) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_error)
+        setContentView( R.layout.activity_error)
 
-        binding.tvErrorLog.text = errorText
+        tv_error_log.text = errorText
 
-        binding.btnReload.setOnClickListener {
+        btn_reload.setOnClickListener {
             startActivity(lastActivityIntent)
             finish()
         }
+
+        Toast.makeText(this, "hello", Toast.LENGTH_SHORT).show()
     }
 
 
