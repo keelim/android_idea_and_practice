@@ -71,14 +71,11 @@ public class OrderListRecyclerAdapter extends RecyclerView.Adapter<OrderListRecy
             holder.tv_accept.setTextColor(holder.itemView.getContext().getResources().getColor(R.color.storeClosingColor));
         }
 
-        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, OrderSpecificActivity.class);
-                intent.putExtra("order", item);
-                intent.putExtra("store", store);
-                context.startActivity(intent);
-            }
+        holder.linearLayout.setOnClickListener(v -> {
+            Intent intent = new Intent(context, OrderSpecificActivity.class);
+            intent.putExtra("order", item);
+            intent.putExtra("store", store);
+            context.startActivity(intent);
         });
     }
 

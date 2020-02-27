@@ -59,11 +59,7 @@ public class BasketActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
         ImageButton backButton = (ImageButton) findViewById(R.id.backButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        backButton.setOnClickListener(v -> finish());
 
         this.context = this;
         // 예약 목록 레이아웃 설정
@@ -97,37 +93,34 @@ public class BasketActivity extends AppCompatActivity {
 
         // 대여하기 버튼 설정
         LinearLayout reserveBtn = (LinearLayout) findViewById(R.id.basket_reservation);
-        reserveBtn.setOnClickListener(new LinearLayout.OnClickListener() {
-            @Override
-            public void onClick(@NonNull View v) {
-                if (Basket.getInstance().getClothesCnt() == 0) {
-                    if (Locale.getDefault().getLanguage() == "ko")
-                        Toast.makeText(v.getContext(), "담은 한복이 없습니다", Toast.LENGTH_SHORT).show();
-                    else
-                        Toast.makeText(v.getContext(), "There is no hanbok in Basket", Toast.LENGTH_SHORT).show();
-                } else {
-                    ArrayList<BasketItem> clothes = Basket.getInstance().getBasket();
-                    int mTop = 0, mBottom = 0, wTop = 0, wBottom = 0;
-                    for (BasketItem item : clothes) {
-                        Clothes tmp = item.getClothes();
-                        if (Constant.CATEGORY[tmp.getCategory()] == "상의") {
-                            if (tmp.getSex() == Constant.MAN)
-                                mTop++;
-                            else if (tmp.getSex() == Constant.WOMAN)
-                                wTop++;
-                        } else if (Constant.CATEGORY[tmp.getCategory()] == "하의") {
-                            if (tmp.getSex() == Constant.MAN)
-                                mBottom++;
-                            else if (tmp.getSex() == Constant.WOMAN)
-                                wBottom++;
-                        }
+        reserveBtn.setOnClickListener(v -> {
+            if (Basket.getInstance().getClothesCnt() == 0) {
+                if (Locale.getDefault().getLanguage() == "ko")
+                    Toast.makeText(v.getContext(), "담은 한복이 없습니다", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(v.getContext(), "There is no hanbok in Basket", Toast.LENGTH_SHORT).show();
+            } else {
+                ArrayList<BasketItem> clothes = Basket.getInstance().getBasket();
+                int mTop = 0, mBottom = 0, wTop = 0, wBottom = 0;
+                for (BasketItem item : clothes) {
+                    Clothes tmp = item.getClothes();
+                    if (Constant.CATEGORY[tmp.getCategory()] == "상의") {
+                        if (tmp.getSex() == Constant.MAN)
+                            mTop++;
+                        else if (tmp.getSex() == Constant.WOMAN)
+                            wTop++;
+                    } else if (Constant.CATEGORY[tmp.getCategory()] == "하의") {
+                        if (tmp.getSex() == Constant.MAN)
+                            mBottom++;
+                        else if (tmp.getSex() == Constant.WOMAN)
+                            wBottom++;
                     }
-
-                    if (mTop == mBottom && wTop == wBottom)
-                        dpd.show(getSupportFragmentManager(), "Datepickerdialog");
-                    else
-                        showAlert();
                 }
+
+                if (mTop == mBottom && wTop == wBottom)
+                    dpd.show(getSupportFragmentManager(), "Datepickerdialog");
+                else
+                    showAlert();
             }
         });
     }
@@ -171,12 +164,9 @@ public class BasketActivity extends AppCompatActivity {
         dpd.setOkText(nextBtnMsg);
         dpd.setCancelText(cancelBtnMsg);
         dpd.setMinDate(now);
-        dpd.setOnDateSetListener(new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-                date = "" + year + "-" + String.format("%02d", monthOfYear + 1) + "-" + String.format("%02d", dayOfMonth);
-                tpd.show(getSupportFragmentManager(), "TimePickerdialog");
-            }
+        dpd.setOnDateSetListener((view, year, monthOfYear, dayOfMonth) -> {
+            date = "" + year + "-" + String.format("%02d", monthOfYear + 1) + "-" + String.format("%02d", dayOfMonth);
+            tpd.show(getSupportFragmentManager(), "TimePickerdialog");
         });
     }
 
@@ -203,12 +193,9 @@ public class BasketActivity extends AppCompatActivity {
         tpd.setOkText(nextBtnMsg);
         tpd.setCancelText(cancelBtnMsg);
         tpd.setTimeInterval(1, 5);
-        tpd.setOnTimeSetListener(new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePickerDialog view, int hourOfDay, int minute, int second) {
-                date += " " + String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":" + String.format("%02d", second);
-                reservation();
-            }
+        tpd.setOnTimeSetListener((view, hourOfDay, minute, second) -> {
+            date += " " + String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":" + String.format("%02d", second);
+            reservation();
         });
         tpd.dismissOnPause(true);
     }
@@ -254,11 +241,8 @@ public class BasketActivity extends AppCompatActivity {
 
         builder.setMessage(alertMsg);
         builder.setPositiveButton(closeBtnMsg,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                (dialog, which) -> {
 
-                    }
                 });
         builder.show();
     }

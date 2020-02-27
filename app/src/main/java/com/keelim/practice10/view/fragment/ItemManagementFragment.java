@@ -145,14 +145,11 @@ public class ItemManagementFragment extends Fragment{
 
         // 당겨서 새로고침
         final SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_layout);
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                dataRefresh();
+        mSwipeRefreshLayout.setOnRefreshListener(() -> {
+            dataRefresh();
 
-                // 새로고침 완료
-                mSwipeRefreshLayout.setRefreshing(false);
-            }
+            // 새로고침 완료
+            mSwipeRefreshLayout.setRefreshing(false);
         });
 
         fabOpen = AnimationUtils.loadAnimation(getActivity(), R.anim.fab_open);
@@ -162,41 +159,30 @@ public class ItemManagementFragment extends Fragment{
         fab1 = (FloatingActionButton) rootView.findViewById(R.id.fab1);
         fab2 = (FloatingActionButton) rootView.findViewById(R.id.fab2);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                anim();
-            }
-        });
+        fab.setOnClickListener(v -> anim());
 
-        fab1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                anim();
-                if(deleteList.size()!=0) {
-                    for (Clothes tmp : deleteList)
-                        JSONTask.getInstance().deleteCloth(tmp.getCloth_id());
-                    originItems = JSONTask.getInstance().getClothesAll(store.getAdmin_id());
-                    items = getClothesList(0);
-                    mAdapter.notifyDataSetChanged();
-                    Toast.makeText(getActivity(), deleteList.size() + "개 항목이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
-                    deleteList.clear();
-                    refresh();
-                } else {
-                    Toast.makeText(getActivity(), "삭제할 항목을 선택해주세요.", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        fab2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                anim();
-                Intent intent = new Intent(getContext(), ItemAddActivity.class);
-                intent.putExtra("store", store);
-                startActivity(intent);
+        fab1.setOnClickListener(v -> {
+            anim();
+            if(deleteList.size()!=0) {
+                for (Clothes tmp : deleteList)
+                    JSONTask.getInstance().deleteCloth(tmp.getCloth_id());
+                originItems = JSONTask.getInstance().getClothesAll(store.getAdmin_id());
+                items = getClothesList(0);
+                mAdapter.notifyDataSetChanged();
+                Toast.makeText(getActivity(), deleteList.size() + "개 항목이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                deleteList.clear();
                 refresh();
+            } else {
+                Toast.makeText(getActivity(), "삭제할 항목을 선택해주세요.", Toast.LENGTH_SHORT).show();
             }
+        });
+
+        fab2.setOnClickListener(v -> {
+            anim();
+            Intent intent = new Intent(getContext(), ItemAddActivity.class);
+            intent.putExtra("store", store);
+            startActivity(intent);
+            refresh();
         });
 
         return rootView;

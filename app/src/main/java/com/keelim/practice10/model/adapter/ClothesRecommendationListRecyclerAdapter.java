@@ -72,14 +72,11 @@ public class ClothesRecommendationListRecyclerAdapter extends RecyclerView.Adapt
         holder.clothesName.setText(item.getName());
 
         holder.cardview.setId(item.getCloth_id());
-        holder.cardview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, ClothesReservationActivity.class);
-                intent.putExtra("clothes", item);
-                intent.putExtra("store", store);
-                context.startActivity(intent);
-            }
+        holder.cardview.setOnClickListener(v -> {
+            Intent intent = new Intent(context, ClothesReservationActivity.class);
+            intent.putExtra("clothes", item);
+            intent.putExtra("store", store);
+            context.startActivity(intent);
         });
     }
 

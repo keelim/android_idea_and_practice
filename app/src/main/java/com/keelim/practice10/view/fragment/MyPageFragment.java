@@ -63,12 +63,7 @@ public class MyPageFragment extends Fragment {
         phoneET.setText(phone);
 
         CardView editBtn = (CardView) rootView.findViewById(R.id.myPage_edit_btn);
-        editBtn.setOnClickListener(new CardView.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showAlert(getContext());
-            }
-        });
+        editBtn.setOnClickListener(v -> showAlert(getContext()));
 
         return rootView;
     }
@@ -77,32 +72,26 @@ public class MyPageFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage("정보를 수정 하시겠습니까?");
         builder.setPositiveButton("예",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String tmp = passwordET.getText().toString();
-                        if (tmp.length() > 0)
-                            password = tmp;
-                        name = nameET.getText().toString();
-                        phone = phoneET.getText().toString();
+                (dialog, which) -> {
+                    String tmp = passwordET.getText().toString();
+                    if (tmp.length() > 0)
+                        password = tmp;
+                    name = nameET.getText().toString();
+                    phone = phoneET.getText().toString();
 
-                        account.setName(name);
-                        account.setPhone(phone);
-                        account.setPw(password);
+                    account.setName(name);
+                    account.setPhone(phone);
+                    account.setPw(password);
 
-                        // 서버에 계정 정보 갱신
-                        JSONTask.getInstance().updateAccount(account);
+                    // 서버에 계정 정보 갱신
+                    JSONTask.getInstance().updateAccount(account);
 
-                        Toast.makeText(context, "수정 완료", Toast.LENGTH_SHORT).show();
-                        refresh();
-                    }
+                    Toast.makeText(context, "수정 완료", Toast.LENGTH_SHORT).show();
+                    refresh();
                 });
         builder.setNegativeButton("아니요",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                (dialog, which) -> {
 
-                    }
                 });
         builder.show();
     }

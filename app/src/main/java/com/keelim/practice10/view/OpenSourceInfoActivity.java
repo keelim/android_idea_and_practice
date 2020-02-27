@@ -24,10 +24,6 @@ public class OpenSourceInfoActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
         ImageButton backButton = (ImageButton)findViewById(R.id.backButton);
-        backButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                finish();
-            }
-        });
+        backButton.setOnClickListener(v -> finish());
     }
 }

@@ -50,12 +50,9 @@ public class LoginActivity extends AppCompatActivity {
         checkBox = (CheckBox) findViewById(R.id.checkBox);
         signUp = (LinearLayout)findViewById(R.id.login_signup);
 
-        signUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
-            }
+        signUp.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(intent);
         });
 
 
@@ -79,46 +76,43 @@ public class LoginActivity extends AppCompatActivity {
             overridePendingTransition(0, 0);
         }
 
-        LoginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        LoginBtn.setOnClickListener(v -> {
 
-                String ID = IDTxt.getText().toString();
-                String Password = PasswordTxt.getText().toString();
-                if(ID.length() * Password.length() == 0) {
-                    Toast.makeText(getApplicationContext(), "내용을 입력하세요", Toast.LENGTH_LONG).show();
-                    return;
-                }
+            String ID = IDTxt.getText().toString();
+            String Password = PasswordTxt.getText().toString();
+            if(ID.length() * Password.length() == 0) {
+                Toast.makeText(getApplicationContext(), "내용을 입력하세요", Toast.LENGTH_LONG).show();
+                return;
+            }
 
-                else if(!Pattern.matches("^[a-zA-Z0-9]*$", ID) || !Pattern.matches("^[a-zA-Z0-9]*$", Password))
-                {
-                    Toast.makeText(getApplicationContext(),"올바른 내용을 입력하세요",Toast.LENGTH_SHORT).show();
-                    return;
-                }
+            else if(!Pattern.matches("^[a-zA-Z0-9]*$", ID) || !Pattern.matches("^[a-zA-Z0-9]*$", Password))
+            {
+                Toast.makeText(getApplicationContext(),"올바른 내용을 입력하세요",Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-                accountList = JSONTask.getInstance().getAccountAll(ID);//ID존재 확인
+            accountList = JSONTask.getInstance().getAccountAll(ID);//ID존재 확인
 
-                if (accountList.size() != 0) {
+            if (accountList.size() != 0) {
 
 
-                    if (JSONTask.getInstance().getLoginResult(ID, Password) == 1) {
-                        checkBox.setChecked(true);
-                        save();
+                if (JSONTask.getInstance().getLoginResult(ID, Password) == 1) {
+                    checkBox.setChecked(true);
+                    save();
 
-                        // 계정 설정
-                        Account.getInstance().setAccount(accountList.get(0));
+                    // 계정 설정
+                    Account.getInstance().setAccount(accountList.get(0));
 
-                        Intent intent = new Intent(getApplicationContext(), SplashActivity.class);
-                        finish();
-                        startActivity(intent);
-                        overridePendingTransition(0, 0);
+                    Intent intent = new Intent(getApplicationContext(), SplashActivity.class);
+                    finish();
+                    startActivity(intent);
+                    overridePendingTransition(0, 0);
 
-                    } else {
-                        Toast.makeText(getApplicationContext(), "비밀번호를 다시 입력하세요", Toast.LENGTH_LONG).show();
-                    }
                 } else {
-                    Toast.makeText(getApplicationContext(), "로그인에 실패하였습니다.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "비밀번호를 다시 입력하세요", Toast.LENGTH_LONG).show();
                 }
+            } else {
+                Toast.makeText(getApplicationContext(), "로그인에 실패하였습니다.", Toast.LENGTH_LONG).show();
             }
         });
     }

@@ -31,11 +31,7 @@ public class MyQRCodeActivity extends AppCompatActivity {
 
         //뒤로가기
         ImageButton backButton = (ImageButton)findViewById(R.id.backButton);
-        backButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                finish();
-            }
-        });
+        backButton.setOnClickListener(v -> finish());
 
         Intent intent = getIntent();
         int reserveID = intent.getIntExtra("reservationID", -1);

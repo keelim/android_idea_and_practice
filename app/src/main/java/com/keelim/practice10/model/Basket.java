@@ -110,22 +110,16 @@ public class Basket {
 
         builder.setMessage(alertMsg);
         builder.setPositiveButton(okBtnMsg,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        clearBasket();
-                        basket.add(item);
-                        selectedStoreID = item.getClothes().getStore_id();
-                        closeReservationActivity(context);
-                        openBasketActivity(context, btn);
-                    }
+                (dialog, which) -> {
+                    clearBasket();
+                    basket.add(item);
+                    selectedStoreID = item.getClothes().getStore_id();
+                    closeReservationActivity(context);
+                    openBasketActivity(context, btn);
                 });
         builder.setNegativeButton(cancelBtnMsg,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                (dialog, which) -> {
 
-                    }
                 });
         builder.show();
     }

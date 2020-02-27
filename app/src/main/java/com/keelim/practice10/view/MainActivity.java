@@ -59,30 +59,22 @@ public class MainActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
         LinearLayout myPageBtn = (LinearLayout)findViewById(R.id.myPage);
-        myPageBtn.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                Intent intent = new Intent(MainActivity.this, MyPageActivity.class);
-                startActivity(intent);
-            }
+        myPageBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, MyPageActivity.class);
+            startActivity(intent);
         });
 
-        View.OnClickListener gotoStoreList = new View.OnClickListener() {
-            @Override
-            public void onClick(@NonNull View v) {
-                Intent intent = new Intent(MainActivity.this, StoreListActivity.class);
-                int sector = Integer.parseInt((String) v.getTag());
-                intent.putExtra("sector", sector);
-                startActivity(intent);
-            }
+        View.OnClickListener gotoStoreList = v -> {
+            Intent intent = new Intent(MainActivity.this, StoreListActivity.class);
+            int sector = Integer.parseInt((String) v.getTag());
+            intent.putExtra("sector", sector);
+            startActivity(intent);
         };
 
         LinearLayout basket = findViewById(R.id.main_basket);
-        basket.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, BasketActivity.class);
-                startActivity(intent);
-            }
+        basket.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, BasketActivity.class);
+            startActivity(intent);
         });
 
         CoordinatorLayout sector1 = (CoordinatorLayout) findViewById(R.id.store_sector_1);
@@ -113,13 +105,10 @@ public class MainActivity extends AppCompatActivity {
         setPalaceRedirection();
 
         LinearLayout hanbokRule = findViewById(R.id.hanbok_guideline);
-        hanbokRule.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String url = "https://cgg.cha.go.kr/agapp/public/html/HtmlPage.do?pg=/cgg/02/information_05.jsp&pageNo=78010200&siteCd=CGG";
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                startActivity(intent);
-            }
+        hanbokRule.setOnClickListener(v -> {
+            String url = "https://cgg.cha.go.kr/agapp/public/html/HtmlPage.do?pg=/cgg/02/information_05.jsp&pageNo=78010200&siteCd=CGG";
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(intent);
         });
 
         // 날씨 설정
@@ -159,23 +148,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
         LinearLayout logout = (LinearLayout)findViewById(R.id.footer_logout);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LoginActivity.setLogOut();
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        logout.setOnClickListener(v -> {
+            LoginActivity.setLogOut();
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
         });
 
         LinearLayout openSourceInfo = (LinearLayout)findViewById(R.id.footer_opensource);
-        openSourceInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, OpenSourceInfoActivity.class);
-                startActivity(intent);
-            }
+        openSourceInfo.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, OpenSourceInfoActivity.class);
+            startActivity(intent);
         });
     }
 
@@ -197,52 +180,37 @@ public class MainActivity extends AppCompatActivity {
     private void setPalaceRedirection(){
         // 경복궁
         ImageView gyeongbok = (ImageView)findViewById(R.id.gyeongbokgung);
-        gyeongbok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.royalpalace.go.kr/"));
-                startActivity(intent);
-            }
+        gyeongbok.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.royalpalace.go.kr/"));
+            startActivity(intent);
         });
 
         // 창경궁
         ImageView changgyeong = (ImageView)findViewById(R.id.changgyeonggung);
-        changgyeong.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://cgg.cha.go.kr/"));
-                startActivity(intent);
-            }
+        changgyeong.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://cgg.cha.go.kr/"));
+            startActivity(intent);
         });
 
         // 창덕궁
         ImageView changdeok = (ImageView)findViewById(R.id.changdeokgung);
-        changdeok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.cdg.go.kr/"));
-                startActivity(intent);
-            }
+        changdeok.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.cdg.go.kr/"));
+            startActivity(intent);
         });
 
         // 종묘
         ImageView jongmyo = (ImageView)findViewById(R.id.jongmyo);
-        jongmyo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://jm.cha.go.kr/"));
-                startActivity(intent);
-            }
+        jongmyo.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://jm.cha.go.kr/"));
+            startActivity(intent);
         });
 
         // 덕수궁
         ImageView deoksu = (ImageView)findViewById(R.id.deoksugung);
-        deoksu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.deoksugung.go.kr/"));
-                startActivity(intent);
-            }
+        deoksu.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.deoksugung.go.kr/"));
+            startActivity(intent);
         });
     }
 

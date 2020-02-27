@@ -98,11 +98,7 @@ public class ItemSpecificActivity extends AppCompatActivity {
 
         //뒤로가기
         ImageButton backButton = (ImageButton)findViewById(R.id.backButton);
-        backButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                finish();
-            }
-        });
+        backButton.setOnClickListener(v -> finish());
 
         ((TextView)findViewById(R.id.tv_add)).setText("변경");
         ((TextView)findViewById(R.id.toolbar_title)).setText(store.getName());
@@ -112,35 +108,17 @@ public class ItemSpecificActivity extends AppCompatActivity {
         imageViewStore = findViewById(R.id.reserve_clothes_img);
         ServerImg.getAdminClothesImageGlide(getApplicationContext(), item.getCloth_id(), imageViewStore);
 
-        imageViewStore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogInterface.OnClickListener cameraListener = new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        camera.captureCamera(activity);
-                    }
-                };
-                DialogInterface.OnClickListener albumListener = new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        camera.getAlbum(activity);
-                    }
-                };
-                DialogInterface.OnClickListener cancelListener = new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(@NonNull DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                };
+        imageViewStore.setOnClickListener(v -> {
+            DialogInterface.OnClickListener cameraListener = (dialog, which) -> camera.captureCamera(activity);
+            DialogInterface.OnClickListener albumListener = (dialog, which) -> camera.getAlbum(activity);
+            DialogInterface.OnClickListener cancelListener = (dialog, which) -> dialog.dismiss();
 
-                new AlertDialog.Builder(activity)
-                        .setTitle("업로드할 이미지 선택")
-                        .setPositiveButton("사진촬영", cameraListener)
-                        .setNeutralButton("앨범선택", albumListener)
-                        .setNegativeButton("취소", cancelListener)
-                        .show();
-            }
+            new AlertDialog.Builder(activity)
+                    .setTitle("업로드할 이미지 선택")
+                    .setPositiveButton("사진촬영", cameraListener)
+                    .setNeutralButton("앨범선택", albumListener)
+                    .setNegativeButton("취소", cancelListener)
+                    .show();
         });
 
         camera.checkPermission(activity);
@@ -162,12 +140,7 @@ public class ItemSpecificActivity extends AppCompatActivity {
 
         tvCategory = findViewById(R.id.tv_category);
         tvCategory.setText(categoryList.get(categoryData-1));
-        tvCategory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                categoryDialog();
-            }
-        });
+        tvCategory.setOnClickListener(v -> categoryDialog());
 
         // 옷 이름
         final EditText name = findViewById(R.id.reserve_clothes_name);
@@ -186,24 +159,18 @@ public class ItemSpecificActivity extends AppCompatActivity {
         selectCnt.setText(""+item.getCount());
 
         // 수량 추가, 감소 버튼 이벤트
-        btnReduce.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int cnt = Integer.parseInt((String) selectCnt.getText()) - 1;
-                if (cnt == 0)
-                    btnReduce.setClickable(false);
-                selectCnt.setText( "" + cnt);
-            }
+        btnReduce.setOnClickListener(v -> {
+            int cnt = Integer.parseInt((String) selectCnt.getText()) - 1;
+            if (cnt == 0)
+                btnReduce.setClickable(false);
+            selectCnt.setText( "" + cnt);
         });
 
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int cnt = Integer.parseInt((String) selectCnt.getText()) + 1;
-                if (cnt == 1)
-                    btnReduce.setClickable(true);
-                selectCnt.setText("" + cnt);
-            }
+        btnAdd.setOnClickListener(v -> {
+            int cnt = Integer.parseInt((String) selectCnt.getText()) + 1;
+            if (cnt == 1)
+                btnReduce.setClickable(true);
+            selectCnt.setText("" + cnt);
         });
 
         final RadioGroup rg = (RadioGroup) findViewById(R.id.rg);
@@ -216,60 +183,54 @@ public class ItemSpecificActivity extends AppCompatActivity {
             rg.check(R.id.rb2);
 
         LinearLayout dataUpdate = (LinearLayout)findViewById(R.id.order_clothes_basket);
-        dataUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int value;
-                try{
-                    value = Integer.parseInt(price.getText().toString());
+        dataUpdate.setOnClickListener(v -> {
+            int value;
+            try{
+                value = Integer.parseInt(price.getText().toString());
 
-                    if(name.getText().toString().getBytes().length <= 0){
-                        Toast.makeText(getApplicationContext(), "에러: 이름을 입력하세요", Toast.LENGTH_SHORT).show();
+                if(name.getText().toString().getBytes().length <= 0){
+                    Toast.makeText(getApplicationContext(), "에러: 이름을 입력하세요", Toast.LENGTH_SHORT).show();
+                } else {
+                    if(description.getText().toString().getBytes().length <= 0){
+                        Toast.makeText(getApplicationContext(), "에러: 설명을 입력하세요", Toast.LENGTH_SHORT).show();
                     } else {
-                        if(description.getText().toString().getBytes().length <= 0){
-                            Toast.makeText(getApplicationContext(), "에러: 설명을 입력하세요", Toast.LENGTH_SHORT).show();
+                        if(value <= 0){
+                            Toast.makeText(getApplicationContext(), "에러: 올바른 가격을 입력하세요", Toast.LENGTH_SHORT).show();
                         } else {
-                            if(value <= 0){
-                                Toast.makeText(getApplicationContext(), "에러: 올바른 가격을 입력하세요", Toast.LENGTH_SHORT).show();
-                            } else {
-                                item.setName(name.getText().toString());
-                                item.setCategory(categoryData);
-                                if(rb1.isChecked())
-                                    item.setSex(Constant.MAN);
-                                else if(rb2.isChecked())
-                                    item.setSex(Constant.WOMAN);
-                                item.setCount(Integer.parseInt(selectCnt.getText().toString()));
-                                item.setPrice(Integer.parseInt(price.getText().toString()));
-                                item.setIntro(description.getText().toString());
+                            item.setName(name.getText().toString());
+                            item.setCategory(categoryData);
+                            if(rb1.isChecked())
+                                item.setSex(Constant.MAN);
+                            else if(rb2.isChecked())
+                                item.setSex(Constant.WOMAN);
+                            item.setCount(Integer.parseInt(selectCnt.getText().toString()));
+                            item.setPrice(Integer.parseInt(price.getText().toString()));
+                            item.setIntro(description.getText().toString());
 //                                NaverTranslate test = new NaverTranslate();
 //                                item.setTransName(test.translatedResult(item.getName()));
 //                                item.setTransIntro(test.translatedResult(item.getIntro()));
 
-                                JSONTask.getInstance().updateCloth(item);
-                                // 업로드 후 백그라운드에서 콜백메소드 실행 후 임시파일 및 디렉토리 삭제
-                                if(uploadFlag)
-                                    ServerImg.uploadFileOnPath(camera.getmCurrentPhotoPath(), String.valueOf(store.getId()), String.valueOf(item.getCloth_id()), getApplicationContext());
-                                Toast.makeText(getApplicationContext(), "변경되었습니다.", Toast.LENGTH_SHORT).show();
-                                ItemManagementFragment.changeFlg = true;
-                                // 바로 종료시 에러있음
-                                //finish();
-                            }
+                            JSONTask.getInstance().updateCloth(item);
+                            // 업로드 후 백그라운드에서 콜백메소드 실행 후 임시파일 및 디렉토리 삭제
+                            if(uploadFlag)
+                                ServerImg.uploadFileOnPath(camera.getmCurrentPhotoPath(), String.valueOf(store.getId()), String.valueOf(item.getCloth_id()), getApplicationContext());
+                            Toast.makeText(getApplicationContext(), "변경되었습니다.", Toast.LENGTH_SHORT).show();
+                            ItemManagementFragment.changeFlg = true;
+                            // 바로 종료시 에러있음
+                            //finish();
                         }
                     }
-                } catch(Exception e){
-                    e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "에러: 올바른 가격을 입력하세요", Toast.LENGTH_SHORT).show();
                 }
+            } catch(Exception e){
+                e.printStackTrace();
+                Toast.makeText(getApplicationContext(), "에러: 올바른 가격을 입력하세요", Toast.LENGTH_SHORT).show();
             }
         });
 
         LinearLayout dataDelete = (LinearLayout)findViewById(R.id.order_clothes_reserve);
-        dataDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "취소되었습니다.", Toast.LENGTH_SHORT).show();
-                finish();
-            }
+        dataDelete.setOnClickListener(v -> {
+            Toast.makeText(getApplicationContext(), "취소되었습니다.", Toast.LENGTH_SHORT).show();
+            finish();
         });
     }
 
@@ -362,26 +323,19 @@ public class ItemSpecificActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("카테고리 선택");
         builder.setSingleChoiceItems(items2, defaultItem,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        SelectedItems.clear();
-                        SelectedItems.add(which);
-                    }
+                (dialog, which) -> {
+                    SelectedItems.clear();
+                    SelectedItems.add(which);
                 });
         builder.setPositiveButton("선택",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (!SelectedItems.isEmpty())
-                            categoryData = (int) SelectedItems.get(0) + 1;
-                        tvCategory.setText(categoryList.get(categoryData-1));
-                    }
+                (dialog, which) -> {
+                    if (!SelectedItems.isEmpty())
+                        categoryData = (int) SelectedItems.get(0) + 1;
+                    tvCategory.setText(categoryList.get(categoryData-1));
                 });
         builder.setNegativeButton("취소",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
+                (dialog, which) -> {
 
-                    }
                 });
         builder.show();
     }

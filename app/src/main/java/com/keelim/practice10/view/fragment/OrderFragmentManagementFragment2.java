@@ -69,13 +69,10 @@ public class OrderFragmentManagementFragment2 extends Fragment{
 
         final SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_layout);
 
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                dataUpdate();
-                refresh();
-                mSwipeRefreshLayout.setRefreshing(false);
-            }
+        mSwipeRefreshLayout.setOnRefreshListener(() -> {
+            dataUpdate();
+            refresh();
+            mSwipeRefreshLayout.setRefreshing(false);
         });
 
         return rootView;

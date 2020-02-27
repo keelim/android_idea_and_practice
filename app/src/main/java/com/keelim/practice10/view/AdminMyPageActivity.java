@@ -45,11 +45,7 @@ public class AdminMyPageActivity extends AppCompatActivity {
 
         //뒤로가기
         ImageButton backButton = (ImageButton) findViewById(R.id.backButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        backButton.setOnClickListener(v -> finish());
 
         ((TextView) findViewById(R.id.toolbar_title)).setText(store.getName());
 
@@ -66,42 +62,31 @@ public class AdminMyPageActivity extends AppCompatActivity {
         phoneET.setText(account.getPhone());
 
         CardView editBtn = (CardView) findViewById(R.id.myPage_edit_btn);
-        editBtn.setOnClickListener(new CardView.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showAlert(context);
-            }
-        });
+        editBtn.setOnClickListener(v -> showAlert(context));
     }
 
     private void showAlert(final Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage("정보를 수정 하시겠습니까?");
         builder.setPositiveButton("예",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String tmp = passwordET.getText().toString();
-                        if (tmp.length() > 0)
-                            account.setPw(tmp);
-                        account.setName(nameET.getText().toString());
-                        account.setPhone(phoneET.getText().toString());
+                (dialog, which) -> {
+                    String tmp = passwordET.getText().toString();
+                    if (tmp.length() > 0)
+                        account.setPw(tmp);
+                    account.setName(nameET.getText().toString());
+                    account.setPhone(phoneET.getText().toString());
 
-                        // 서버에 계정 정보 갱신
-                        JSONTask.getInstance().updateAccount(account);
+                    // 서버에 계정 정보 갱신
+                    JSONTask.getInstance().updateAccount(account);
 
-                        Toast.makeText(context, "수정 완료", Toast.LENGTH_SHORT).show();
-                        passwordET.setText("");
-                    }
+                    Toast.makeText(context, "수정 완료", Toast.LENGTH_SHORT).show();
+                    passwordET.setText("");
                 });
         builder.setNegativeButton("아니요",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        nameET.setText(account.getName());
-                        phoneET.setText(account.getPhone());
-                        passwordET.setText("");
-                    }
+                (dialog, which) -> {
+                    nameET.setText(account.getName());
+                    phoneET.setText(account.getPhone());
+                    passwordET.setText("");
                 });
         builder.show();
     }
