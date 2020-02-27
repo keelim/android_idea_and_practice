@@ -1,0 +1,16 @@
+# Project exclude paths
+/.gradle/
+/.idea
+build
+*.gitignore
+build.gradle
+*.properties
+*.bat
+settings.gradle
+gradlew
+/gradle
+*.json
+*.pro
+/app/src/main/res
+*.xml
+*.png
