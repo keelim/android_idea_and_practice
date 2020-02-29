@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.keelim.practice11">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.NFC" />
+
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@drawable/apk_image"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="com.keelim.practice11.view.SplashActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.keelim.practice11.view.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.keelim.practice11.view.IdinfoActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.keelim.practice11.view.CallingActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.keelim.practice11.view.UriConnectActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.keelim.practice11.view.UriTabActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.keelim.practice11.view.EraseActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.keelim.practice11.view.LostPropertyActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.keelim.practice11.view.LostBusActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.keelim.practice11.view.LostSubwayActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.keelim.practice11.view.LostTaxiActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.keelim.practice11.view.Public_institutionActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.keelim.practice11.view.SendingMessageActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="ext"
+                    android:pathPrefix="/com.example:externaltype"
+                    android:scheme="vnd.android.nfc" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.keelim.practice11.view.BusActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.keelim.practice11.view.LostBus2Activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.keelim.practice11.view.LostTaxi2Activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.keelim.practice11.view.TaxiActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.keelim.practice11.view.LostSubway2Activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.keelim.practice11.view.LostSubway3Activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.keelim.practice11.view.SubwayActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+    </application>
+
+</manifest>
