@@ -105,7 +105,7 @@ class Game3_Item : AppCompatActivity() {
     }
 
     override fun onBackPressed() { //  super.onBackPressed();
-        startActivity(Intent(this@Game3_Item, Game2_Main::class.java))
+        startActivity(Intent(this@Game3_Item, Game2Activity::class.java))
         finish()
     }
 

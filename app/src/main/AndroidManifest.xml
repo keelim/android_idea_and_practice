@@ -50,7 +50,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.keelim.practice6.view.a_RegisterActivity" />
+        <activity android:name="com.keelim.practice6.view.RegisterActivity" />
         <activity
             android:name="com.keelim.practice6.view.LoginMainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -71,9 +71,9 @@
 
 
         <!-- 게임 기능 합체 -->
-        <activity android:name="com.keelim.practice6.view.Game0_Start" />
-        <activity android:name="com.keelim.practice6.view.Game1_Day" />
-        <activity android:name="com.keelim.practice6.view.Game2_Main" />
+        <activity android:name="com.keelim.practice6.view.Game0Activity" />
+        <activity android:name="com.keelim.practice6.view.Game1Actvity" />
+        <activity android:name="com.keelim.practice6.view.Game2Activity" />
         <activity android:name="com.keelim.practice6.view.Game3_Item" />
         <activity android:name="com.keelim.practice6.view.Game4_Run" />
         <activity

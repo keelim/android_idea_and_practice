@@ -33,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
 
         // (2)로그인 창에서 회원가입 버튼을 눌렀을 때 화면이 넘어가는 부분
         registerButton.setOnClickListener {
-            startActivity(Intent(this, a_RegisterActivity::class.java))
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
 
         if (saveLoginData) {

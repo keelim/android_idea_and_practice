@@ -189,7 +189,7 @@ class Game4_Run : AppCompatActivity(), SensorEventListener {
             editor.putInt("Family_Two_Damage", Temp_Family_Two_Damage)
             editor.commit()
             // 화면 전환
-            startActivity(Intent(this@Game4_Run, Game1_Day::class.java))
+            startActivity(Intent(this@Game4_Run, Game1Actvity::class.java))
             finish()
         }
     }

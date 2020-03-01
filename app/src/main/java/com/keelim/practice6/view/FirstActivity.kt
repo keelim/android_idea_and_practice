@@ -25,7 +25,7 @@ class FirstActivity : AppCompatActivity() {
         walkAwayTitle!!.typeface = font_one
 
         normalModeButton!!.setOnClickListener { view ->
-            startActivityForResult(Intent(view.context, Game0_Start::class.java), 0)
+            startActivityForResult(Intent(view.context, Game0Activity::class.java), 0)
             finish()
         }
         loginButton!!.setOnClickListener { view ->
