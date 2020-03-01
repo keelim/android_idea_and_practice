@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.keelim.practice6.R;
+import com.keelim.practice6.model.Record;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -116,7 +117,7 @@ public class Fragment_loggedInRecord extends Fragment {
         font_one = Typeface.createFromAsset(getActivity().getAssets(), "fonts/font_one.ttf"); //TitilliumWeb-Light from Titillium Web by Accademia di Belle Arti di Urbino (1001freefonts.com)
         font_two = Typeface.createFromAsset(getActivity().getAssets(), "fonts/font_two.ttf"); //NHC 고도 마음체 godoM
 
-        userID = a_LoginMainActivity.userID;
+        userID = LoginMainActivity.userID;
         System.out.println("fragment id check>>"+userID);
 
         hsPedo = (TextView)getView().findViewById(R.id.hsPedo);

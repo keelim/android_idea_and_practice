@@ -16,6 +16,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.keelim.practice6.R;
+import com.keelim.practice6.model.Record;
 
 import org.json.JSONObject;
 
@@ -97,7 +98,7 @@ public class RecordListAdapter extends BaseAdapter {
         del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                userId = a_LoginMainActivity.userID;
+                userId = LoginMainActivity.userID;
                 //  Toast.makeText(parent.getContext(),datetimeS+" "+userId,Toast.LENGTH_LONG).show();
                 final Dialog dialog = new Dialog(parent.getContext()); //here, the name of the activity class that you're writing a code in, needs to be replaced
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); //for title bars not to be appeared (타이틀 바 안보이게)

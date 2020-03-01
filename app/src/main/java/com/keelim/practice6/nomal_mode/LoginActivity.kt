@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Response
 import com.android.volley.toolbox.Volley
 import com.keelim.practice6.R
+import com.keelim.practice6.utils.SavedSharedPreference
 import com.keelim.practice6.view.FirstActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONObject
@@ -54,7 +55,7 @@ class LoginActivity : AppCompatActivity() {
                     CustomConfirmDialog().showConfirmDialog(this, "로그인에 성공하였습니다.", false)
                     // 화면 전환 (로그인창 -> 메인창)
 
-                    Intent(this@LoginActivity, a_LoginMainActivity::class.java).apply {
+                    Intent(this, LoginMainActivity::class.java).apply {
                         putExtra("userID", userID)
                         startActivity(this)
                     }
@@ -70,7 +71,7 @@ class LoginActivity : AppCompatActivity() {
 
     // a function that saves the set data (설정값을 저장하는 함수)
     private fun save() { // only SharedPreferences is not enough, use Editor (SharedPreferences 객체만으론 저장 불가능 Editor 사용)
-        appData!!.edit().apply {
+        appData.edit().apply {
             putBoolean("SAVE_LOGIN_DATA", checkBox!!.isChecked)
             putString("ID", idText!!.text.toString().trim { it <= ' ' })
             putString("PWD", passwordText!!.text.toString().trim { it <= ' ' })

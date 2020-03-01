@@ -1,6 +1,8 @@
-package com.keelim.practice6.nomal_mode;
+package com.keelim.practice6.utils;
 //a class which will accept updates from accelerometer sensor and deploys the filter to detect if a step has been covered by the user
 //accelerometer 센서에서 업데이트를 가져오고 걸음 수를 감지하는 일을 하는 클래스
+
+import com.keelim.practice6.nomal_mode.StepListener;
 
 public class StepDetector {
 

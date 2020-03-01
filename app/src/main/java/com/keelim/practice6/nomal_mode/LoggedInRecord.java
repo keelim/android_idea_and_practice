@@ -19,6 +19,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.keelim.practice6.R;
+import com.keelim.practice6.model.Record;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -202,8 +203,8 @@ public class LoggedInRecord extends AppCompatActivity {
 
             case android.R.id.home:
                 finish();
-                Intent intent = new Intent(LoggedInRecord.this, a_LoginMainActivity.class);
-                intent.putExtra("userID", a_LoginMainActivity.userID);
+                Intent intent = new Intent(LoggedInRecord.this, LoginMainActivity.class);
+                intent.putExtra("userID", LoginMainActivity.userID);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 return true;
@@ -216,8 +217,8 @@ public class LoggedInRecord extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish(); // close this activity and return to preview activity (if there is any)
-        Intent intent = new Intent(LoggedInRecord.this, a_LoginMainActivity.class);
-        intent.putExtra("userID", a_LoginMainActivity.userID);
+        Intent intent = new Intent(LoggedInRecord.this, LoginMainActivity.class);
+        intent.putExtra("userID", LoginMainActivity.userID);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
     }

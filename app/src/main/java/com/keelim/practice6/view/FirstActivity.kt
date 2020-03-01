@@ -4,40 +4,34 @@ import android.app.Dialog
 import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
-import android.view.View
 import android.view.Window
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.keelim.practice6.R
 import com.keelim.practice6.game_mode.Game0_Start
 import com.keelim.practice6.nomal_mode.LoginActivity
+import kotlinx.android.synthetic.main.activity_first.*
+import kotlinx.android.synthetic.main.dialog_exp.*
 
 class FirstActivity : AppCompatActivity() {
-    private var normalModeButton: Button? = null
-    private var loginButton: Button? = null
-    private var questionMarkButton: ImageView? = null
-    private var walkAwayTitle: TextView? = null
-    var font_one: Typeface? = null
-    private var infoButton: ImageView? = null
+    // 두번 뒤로가기 버튼을 누르면 종료
+    private lateinit var font_one: Typeface
+    private var lastTimeBackPressed: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_first)
         supportActionBar!!.hide()
+
         font_one = Typeface.createFromAsset(assets, "fonts/font_one.ttf")
-
-
         walkAwayTitle!!.typeface = font_one
+
         normalModeButton!!.setOnClickListener { view ->
             startActivityForResult(Intent(view.context, Game0_Start::class.java), 0)
             finish()
         }
         loginButton!!.setOnClickListener { view ->
-            val intent = Intent(view.context, LoginActivity::class.java)
-            startActivityForResult(intent, 0)
+            startActivityForResult(Intent(view.context, LoginActivity::class.java), 0)
             finish()
         }
         questionMarkButton!!.setOnClickListener {
@@ -48,16 +42,17 @@ class FirstActivity : AppCompatActivity() {
                 setCancelable(false) //to prevent dialog getting dismissed on back button
                 show()
             }
-            val dialogButton = dialog.findViewById<View>(R.id.confirmButton) as Button
-            dialogButton.setOnClickListener { dialog.dismiss() }
+
+            confirmButton.setOnClickListener {
+                dialog.dismiss()
+            }
         }
         infoButton!!.setOnClickListener {
-            startActivity(Intent(this@FirstActivity, PopUpActivity::class.java))
+            startActivity(Intent(this, PopUpActivity::class.java))
         }
     }
 
-    // 두번 뒤로가기 버튼을 누르면 종료
-    private var lastTimeBackPressed: Long = 0
+
 
     override fun onBackPressed() { // 한번 버튼을 누른 뒤, 1.5초 이내에 또 누르면 종료
         if (System.currentTimeMillis() - lastTimeBackPressed < 1500) {

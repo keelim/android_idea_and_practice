@@ -52,7 +52,7 @@
         </activity>
         <activity android:name="com.keelim.practice6.nomal_mode.a_RegisterActivity" />
         <activity
-            android:name="com.keelim.practice6.nomal_mode.a_LoginMainActivity"
+            android:name="com.keelim.practice6.nomal_mode.LoginMainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
 
@@ -66,8 +66,8 @@
         <activity android:name="com.keelim.practice6.nomal_mode.SettingActivity" />
 
         <!-- 프로필 -->
-        <activity android:name="com.keelim.practice6.nomal_mode.ProfilePicture" />
-        <activity android:name="com.keelim.practice6.nomal_mode.ProfilePictureUpload" />
+        <activity android:name="com.keelim.practice6.nomal_mode.ProfilePictureActivity" />
+        <activity android:name="com.keelim.practice6.nomal_mode.ProfilePictureUploadActivity" />
 
 
         <!-- 게임 기능 합체 -->

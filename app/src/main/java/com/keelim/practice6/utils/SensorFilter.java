@@ -1,4 +1,4 @@
-package com.keelim.practice6.nomal_mode;
+package com.keelim.practice6.utils;
 
 // a class with an algorithm to filter out values that has close approximation to steps
 // 걸음 수라고 예상되는 (에 가까운) 값들을 뽑아내는 알고리즘을 가지는 클래스

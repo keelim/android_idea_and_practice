@@ -55,6 +55,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.keelim.practice6.R;
+import com.keelim.practice6.utils.SavedSharedPreference;
+import com.keelim.practice6.utils.StepDetector;
 
 import org.json.JSONObject;
 
@@ -264,7 +266,7 @@ public class LoggedInWalk extends AppCompatActivity implements OnMapReadyCallbac
                     //your code here
                     dialog.dismiss(); //to dismiss the dialog
                     finish();
-                    Intent intent = new Intent(LoggedInWalk.this, a_LoginMainActivity.class);
+                    Intent intent = new Intent(LoggedInWalk.this, LoginMainActivity.class);
                     intent.putExtra("userID", userID);
                     startActivity(intent); //force back to first activity
                 }
@@ -665,7 +667,7 @@ if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_F
                             public void onClick(View view) {
                                 dialog.dismiss();
                                 finish();
-                                Intent intent = new Intent(view.getContext(), a_LoginMainActivity.class);
+                                Intent intent = new Intent(view.getContext(), LoginMainActivity.class);
                                 intent.putExtra("userID", userID);
                                 startActivityForResult(intent, 0);
                             }
@@ -926,7 +928,7 @@ if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_F
         // 한번 버튼을 누른 뒤, 1.5초 이내에 또 누르면 종료
         if (System.currentTimeMillis() - lastTimeBackPressed < 1500) {
             finish();
-            Intent intent = new Intent(LoggedInWalk.this, a_LoginMainActivity.class);
+            Intent intent = new Intent(LoggedInWalk.this, LoginMainActivity.class);
             intent.putExtra("userID", userID);
             startActivityForResult(intent, 0);
             return;

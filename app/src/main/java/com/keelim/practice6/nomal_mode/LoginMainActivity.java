@@ -30,6 +30,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
+import com.keelim.practice6.model.ImageData;
+import com.keelim.practice6.utils.SavedSharedPreference;
 import com.keelim.practice6.view.FirstActivity;
 import com.keelim.practice6.R;
 
@@ -42,7 +44,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class a_LoginMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class LoginMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     // 이곳은 로그인을 할 때 넘어오는 액티비티다.
 
@@ -53,25 +55,21 @@ public class a_LoginMainActivity extends AppCompatActivity implements Navigation
 
     private ImageData imageData;
     public static String userID;   //모든 클래스에서 접근가능
-
     Typeface font_one;
-
-    private ImageView headerUserImageView;
-
-
+    private ImageView headerUserPic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_logged_in);
+        setContentView(R.layout.activity_login_main);
         ActionBar actionBar = getSupportActionBar();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ((AppCompatActivity) a_LoginMainActivity.this).getSupportActionBar().setTitle((Html.fromHtml("<font color='#ffffff'>" + "Walk Away" + "</font>")));
+        ((AppCompatActivity) LoginMainActivity.this).getSupportActionBar().setTitle((Html.fromHtml("<font color='#ffffff'>" + "Walk Away" + "</font>")));
 
 
         Intent intent = getIntent();
-        userID = intent.getExtras().getString("userID").toString();
+        userID = intent.getExtras().getString("userID");
         System.out.println("userID="+userID);
 
 
@@ -82,21 +80,21 @@ public class a_LoginMainActivity extends AppCompatActivity implements Navigation
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         //imply navigation drawer (navigation drawer적용)
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar,R.string.navigation_drawer_open , R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
+        DrawerLayout drawer_layout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer_layout, toolbar,R.string.navigation_drawer_open , R.string.navigation_drawer_close);
+        drawer_layout.addDrawerListener(toggle);
         toggle.syncState();
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+
+        NavigationView nav_view = (NavigationView) findViewById(R.id.nav_view);
+        nav_view.setNavigationItemSelectedListener(this);
 
         //set text view on navigation drawer's header (navigation drawer의 헤더 부분에 있는 text view를 셋팅)
-        View headerView = navigationView.getHeaderView(0);
-        TextView navUserID = (TextView) headerView.findViewById(R.id.headerUserId);
-        headerUserImageView = (ImageView)headerView.findViewById(R.id.headerUserPic);
+        View headerView = nav_view.getHeaderView(0);
+        TextView headerUserId = (TextView) headerView.findViewById(R.id.headerUserId);
+        headerUserPic = (ImageView)headerView.findViewById(R.id.headerUserPic);
 
-        navUserID.setText(userID);
-        navUserID.setTypeface(font_one);
+        headerUserId.setText(userID);
+        headerUserId.setTypeface(font_one);
 
 
 /*      // Floating 버튼 제거
@@ -116,10 +114,10 @@ public class a_LoginMainActivity extends AppCompatActivity implements Navigation
 
 
         // 이미지 버튼 추가
-        ImageButton imageBtn = (ImageButton)findViewById(R.id.walk_imageButton);
-        imageBtn.setOnClickListener(new View.OnClickListener() {
+        ImageButton walk_imageButton = (ImageButton)findViewById(R.id.walk_imageButton);
+        walk_imageButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(a_LoginMainActivity.this, LoggedInWalk.class);
+                Intent intent = new Intent(LoginMainActivity.this, LoggedInWalk.class);
                 intent.putExtra("userID", userID);
                 startActivity(intent);
                 finish();
@@ -128,12 +126,12 @@ public class a_LoginMainActivity extends AppCompatActivity implements Navigation
 
 
         // 텍스트 버튼 추가
-        TextView Start = (TextView) findViewById(R.id.start_text);
-        Start.setOnClickListener(new View.OnClickListener() {
+        TextView start_text = (TextView) findViewById(R.id.start_text);
+        start_text.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(a_LoginMainActivity.this, LoggedInWalk.class);
+                Intent intent = new Intent(LoginMainActivity.this, LoggedInWalk.class);
                 intent.putExtra("userID", userID);
                 startActivity(intent);
                 finish();
@@ -157,31 +155,29 @@ public class a_LoginMainActivity extends AppCompatActivity implements Navigation
         // adapter = new 공지ListAdapter(getApplicationContext(), noticeList);
         // noticeListView.setAdapter(adapter);
 
-        final Button runButton = (Button) findViewById(R.id.run);
+        final Button run = (Button) findViewById(R.id.run);
         final Button courseButton = (Button) findViewById(R.id.courseButton);
         //final Button statisticsButton = (Button) findViewById(R.id.statisticsButton);
         final LinearLayout notice = (LinearLayout) findViewById(R.id.notice);  //해당 Fragment 눌렀을 때 화면의 레이아웃이 바뀌는 부분
 
 
         // 선택된 버튼만 색상을 어둡게 만들고 나머지 버튼은 밝은 색상으로 변경
-        runButton.setBackground(getResources().getDrawable(R.drawable.button_back_dark_color));
-        courseButton.setBackground(getResources().getDrawable(R.drawable.button_back_prime_color));
+        run.setBackground(getResources().getDrawable(R.drawable.button_back_dark_color, getTheme()));
+        courseButton.setBackground(getResources().getDrawable(R.drawable.button_back_prime_color, getTheme()));
         //statisticsButton.setBackground(getResources().getDrawable(R.drawable.button_back_prime_color));
 
 
 
 
         // 1. 걷기시작 화면으로
-        runButton.setOnClickListener(new View.OnClickListener() {
+        run.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 notice.setVisibility(View.GONE);
 
-
                 // 선택된 버튼만 색상을 어둡게 만들고 나머지 버튼은 밝은 색상으로 변경
-                runButton.setBackground(getResources().getDrawable(R.drawable.button_back_dark_color));
-                courseButton.setBackground(getResources().getDrawable(R.drawable.button_back_prime_color));
+                run.setBackground(getResources().getDrawable(R.drawable.button_back_dark_color, getTheme()));
+                courseButton.setBackground(getResources().getDrawable(R.drawable.button_back_prime_color, getTheme()));
                 //statisticsButton.setBackground(getResources().getDrawable(R.drawable.button_back_prime_color));
 
                 FragmentManager fragmentManager = getSupportFragmentManager();
@@ -211,8 +207,8 @@ public class a_LoginMainActivity extends AppCompatActivity implements Navigation
 
 
                 // 선택된 버튼만 색상을 어둡게 만들고 나머지 버튼은 밝은 색상으로 변경
-                runButton.setBackground(getResources().getDrawable(R.drawable.button_back_prime_color));
-                courseButton.setBackground(getResources().getDrawable(R.drawable.button_back_dark_color));
+                run.setBackground(getResources().getDrawable(R.drawable.button_back_prime_color, getTheme()));
+                courseButton.setBackground(getResources().getDrawable(R.drawable.button_back_dark_color, getTheme()));
                 //statisticsButton.setBackground(getResources().getDrawable(R.drawable.button_back_prime_color));
 
                 FragmentManager fragmentManager = getSupportFragmentManager();
@@ -265,7 +261,7 @@ public class a_LoginMainActivity extends AppCompatActivity implements Navigation
 
     class BackgroundTask2 extends AsyncTask<Void, Void, String> {
         // (로딩창 띄우기 작업 3/1) 로딩창을 띄우기 위해 선언해준다.
-        ProgressDialog dialog = new ProgressDialog(a_LoginMainActivity.this);
+        ProgressDialog dialog = new ProgressDialog(LoginMainActivity.this);
 
         String target;  //우리가 접속할 홈페이지 주소가 들어감
 
@@ -354,7 +350,7 @@ public class a_LoginMainActivity extends AppCompatActivity implements Navigation
                     imageData = new ImageData(userId, image_data);
 
                     String path = imageData.getImage_data();
-                    new DownloadImageTask(headerUserImageView).execute(path);
+                    new DownloadImageTask(headerUserPic).execute(path);
 
                 }
 
@@ -552,7 +548,7 @@ public class a_LoginMainActivity extends AppCompatActivity implements Navigation
 
     // 로그아웃 버튼
     public void logout() {
-        final Dialog dialog = new Dialog(a_LoginMainActivity.this);
+        final Dialog dialog = new Dialog(LoginMainActivity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); //for title bars not to be appeared (타이틀 바 안보이게)
         dialog.setContentView(R.layout.dialog_alert);
 
@@ -574,9 +570,8 @@ public class a_LoginMainActivity extends AppCompatActivity implements Navigation
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
-                SavedSharedPreference.clearId(a_LoginMainActivity.this);
-                Intent intent = new Intent(a_LoginMainActivity.this,
-                        FirstActivity.class);
+                SavedSharedPreference.clearId(LoginMainActivity.this);
+                Intent intent = new Intent(LoginMainActivity.this, FirstActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 finish();
                 startActivity(intent);
@@ -594,7 +589,7 @@ public class a_LoginMainActivity extends AppCompatActivity implements Navigation
 
     // 나의 기록 버튼
     public void myRecord() {
-        Intent intent = new Intent(a_LoginMainActivity.this, LoggedInRecord.class);
+        Intent intent = new Intent(LoginMainActivity.this, LoggedInRecord.class);
         intent.putExtra("userID",userID);
         finish();
         startActivity(intent);
@@ -603,7 +598,7 @@ public class a_LoginMainActivity extends AppCompatActivity implements Navigation
     // 설정 버튼
     public void settingAct() {
         finish();
-        Intent intent = new Intent(a_LoginMainActivity.this, SettingActivity.class);
+        Intent intent = new Intent(LoginMainActivity.this, SettingActivity.class);
         startActivity(intent);
     }
 }
