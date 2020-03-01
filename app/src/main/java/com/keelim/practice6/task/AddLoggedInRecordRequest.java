@@ -1,4 +1,4 @@
-package com.keelim.practice6.nomal_mode;
+package com.keelim.practice6.task;
 
 
 import com.android.volley.Response;
@@ -9,7 +9,7 @@ import java.util.Map;
 
 
 public class AddLoggedInRecordRequest extends StringRequest{
-    final static private String URL = "http://ggavi2000.cafe24.com/AddLoggedInRecord.php";
+    final static private String URL = "helloAddLoggedInRecord.php";
     private Map<String, String> parameters;
 
     public AddLoggedInRecordRequest(String userId, String pedometer, String distance, String calorie, String time, String speed, String progress, Response.Listener<String> listener) {

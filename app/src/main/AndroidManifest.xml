@@ -42,7 +42,7 @@
         </activity>
 
         <!-- 스플래시 이후 첫 실행 -->
-        <activity android:name="com.keelim.practice6.nomal_mode.LoginActivity">
+        <activity android:name="com.keelim.practice6.view.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -50,9 +50,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.keelim.practice6.nomal_mode.a_RegisterActivity" />
+        <activity android:name="com.keelim.practice6.view.a_RegisterActivity" />
         <activity
-            android:name="com.keelim.practice6.nomal_mode.LoginMainActivity"
+            android:name="com.keelim.practice6.view.LoginMainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
 
@@ -61,31 +61,31 @@
             android:name="com.keelim.practice6.view.PopUpActivity"
             android:theme="@style/AppTheme.Pop" />
         <activity android:name="com.keelim.practice6.view.FirstActivity" />
-        <activity android:name="com.keelim.practice6.nomal_mode.LoggedInWalk" />
-        <activity android:name="com.keelim.practice6.nomal_mode.LoggedInRecord" />
-        <activity android:name="com.keelim.practice6.nomal_mode.SettingActivity" />
+        <activity android:name="com.keelim.practice6.view.LoggedInWalkActivity" />
+        <activity android:name="com.keelim.practice6.view.LoggedInRecordActivity" />
+        <activity android:name="com.keelim.practice6.view.SettingActivity" />
 
         <!-- 프로필 -->
-        <activity android:name="com.keelim.practice6.nomal_mode.ProfilePictureActivity" />
-        <activity android:name="com.keelim.practice6.nomal_mode.ProfilePictureUploadActivity" />
+        <activity android:name="com.keelim.practice6.view.ProfilePictureActivity" />
+        <activity android:name="com.keelim.practice6.view.ProfilePictureUploadActivity" />
 
 
         <!-- 게임 기능 합체 -->
-        <activity android:name="com.keelim.practice6.game_mode.Game0_Start" />
-        <activity android:name="com.keelim.practice6.game_mode.Game1_Day" />
-        <activity android:name="com.keelim.practice6.game_mode.Game2_Main" />
-        <activity android:name="com.keelim.practice6.game_mode.Game3_Item" />
-        <activity android:name="com.keelim.practice6.game_mode.Game4_Run" />
+        <activity android:name="com.keelim.practice6.view.Game0_Start" />
+        <activity android:name="com.keelim.practice6.view.Game1_Day" />
+        <activity android:name="com.keelim.practice6.view.Game2_Main" />
+        <activity android:name="com.keelim.practice6.view.Game3_Item" />
+        <activity android:name="com.keelim.practice6.view.Game4_Run" />
         <activity
-            android:name="com.keelim.practice6.game_mode.Game5_EndingVideo"
+            android:name="com.keelim.practice6.view.Game5_EndingVideo"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
-            android:name="com.keelim.practice6.game_mode.Game5_DeadVideo"
+            android:name="com.keelim.practice6.view.Game5_DeadVideo"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
-            android:name="com.keelim.practice6.game_mode.Game5_StartVideo"
+            android:name="com.keelim.practice6.view.Game5_StartVideo"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
         </activity>

@@ -1,4 +1,4 @@
-package com.keelim.practice6.nomal_mode;
+package com.keelim.practice6.model;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -16,7 +16,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.keelim.practice6.R;
-import com.keelim.practice6.model.Record;
+import com.keelim.practice6.task.EachRecordDelete;
+import com.keelim.practice6.view.LoginMainActivity;
+import com.keelim.practice6.view.customs.CustomConfirmDialog;
 
 import org.json.JSONObject;
 

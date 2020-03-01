@@ -1,4 +1,4 @@
-package com.keelim.practice6.nomal_mode;
+package com.keelim.practice6.view;
 
 import android.os.Bundle;
 import android.text.Html;
@@ -17,6 +17,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.keelim.practice6.R;
+import com.keelim.practice6.view.customs.CustomConfirmDialog;
+import com.keelim.practice6.task.a_RegisterRequest;
+import com.keelim.practice6.task.a_ValidateRequest;
 
 import org.json.JSONObject;
 

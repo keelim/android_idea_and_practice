@@ -1,4 +1,4 @@
-package com.keelim.practice6.nomal_mode;
+package com.keelim.practice6.task;
 
 import android.app.ProgressDialog;
 import android.graphics.Typeface;
@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import com.keelim.practice6.R;
 import com.keelim.practice6.model.Record;
+import com.keelim.practice6.view.LoginMainActivity;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -161,7 +162,7 @@ public class Fragment_loggedInRecord extends Fragment {
 
         @Override
         protected void onPreExecute() {
-            target = "http://ggavi2000.cafe24.com/RecordList.php?userId="+ userID;  //해당 웹 서버에 접속
+            target = "helloRecordList.php?userId="+ userID;  //해당 웹 서버에 접속
 
             // (로딩창 띄우기 작업 3/2)
             dialog.setMessage("로딩중");

@@ -8,8 +8,6 @@ import android.view.Window
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.keelim.practice6.R
-import com.keelim.practice6.game_mode.Game0_Start
-import com.keelim.practice6.nomal_mode.LoginActivity
 import kotlinx.android.synthetic.main.activity_first.*
 import kotlinx.android.synthetic.main.dialog_exp.*
 

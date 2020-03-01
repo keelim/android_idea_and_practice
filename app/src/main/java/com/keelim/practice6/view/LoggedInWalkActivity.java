@@ -1,4 +1,4 @@
-package com.keelim.practice6.nomal_mode;
+package com.keelim.practice6.view;
 
 import android.Manifest;
 import android.app.Dialog;
@@ -55,6 +55,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.keelim.practice6.R;
+import com.keelim.practice6.task.AddLoggedInRecordRequest;
+import com.keelim.practice6.model.StepListener;
 import com.keelim.practice6.utils.SavedSharedPreference;
 import com.keelim.practice6.utils.StepDetector;
 
@@ -64,7 +66,8 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoggedInWalk extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks, SensorEventListener, StepListener {
+public class LoggedInWalkActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks, SensorEventListener, StepListener {
+
 
     private String userID;
     // private BroadcastReceiver broadcastReceiver; 아두이노 부품 연동시
@@ -178,7 +181,7 @@ public class LoggedInWalk extends AppCompatActivity implements OnMapReadyCallbac
         userID = intent.getExtras().getString("userID");
 
 
-        ((AppCompatActivity) LoggedInWalk.this).getSupportActionBar().setTitle((Html.fromHtml("<font color='#ffffff'>" + "걷기모드" + "</font>")));
+        ((AppCompatActivity) LoggedInWalkActivity.this).getSupportActionBar().setTitle((Html.fromHtml("<font color='#ffffff'>" + "걷기모드" + "</font>")));
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         buildGoogleApiClient(); //GoogleApiClient를 빌드
@@ -224,7 +227,7 @@ public class LoggedInWalk extends AppCompatActivity implements OnMapReadyCallbac
 
             //shows a dialog to connect gps (gps연결 하기 위해 dialog 보여줌)
 
-            final Dialog dialog = new Dialog(LoggedInWalk.this); //here, the name of the activity class that you're writing a code in, needs to be replaced
+            final Dialog dialog = new Dialog(LoggedInWalkActivity.this); //here, the name of the activity class that you're writing a code in, needs to be replaced
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); //for title bars not to be appeared (타이틀 바 안보이게)
             dialog.setContentView(R.layout.dialog_alert); //setting view
 
@@ -256,7 +259,7 @@ public class LoggedInWalk extends AppCompatActivity implements OnMapReadyCallbac
                     startActivity(myIntent);
                     SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                             .findFragmentById(R.id.mapL);
-                    mapFragment.getMapAsync(LoggedInWalk.this);
+                    mapFragment.getMapAsync(LoggedInWalkActivity.this);
                 }
             });
 
@@ -266,7 +269,7 @@ public class LoggedInWalk extends AppCompatActivity implements OnMapReadyCallbac
                     //your code here
                     dialog.dismiss(); //to dismiss the dialog
                     finish();
-                    Intent intent = new Intent(LoggedInWalk.this, LoginMainActivity.class);
+                    Intent intent = new Intent(LoggedInWalkActivity.this, LoginMainActivity.class);
                     intent.putExtra("userID", userID);
                     startActivity(intent); //force back to first activity
                 }
@@ -275,7 +278,7 @@ public class LoggedInWalk extends AppCompatActivity implements OnMapReadyCallbac
         } else {
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.mapL);
-            mapFragment.getMapAsync(LoggedInWalk.this);
+            mapFragment.getMapAsync(LoggedInWalkActivity.this);
         }
 
 
@@ -364,10 +367,10 @@ public class LoggedInWalk extends AppCompatActivity implements OnMapReadyCallbac
             public void onClick(View view) {
 
                 // 목표설정에 공백 넣으면 띄울 Alert 창을 위해 선언
-                choosedistanse = new AlertDialog.Builder(LoggedInWalk.this);
+                choosedistanse = new AlertDialog.Builder(LoggedInWalkActivity.this);
 
                 if (!isTracking) {
-                    final Dialog dialog = new Dialog(LoggedInWalk.this);
+                    final Dialog dialog = new Dialog(LoggedInWalkActivity.this);
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     dialog.setContentView(R.layout.dialog_goal);
 
@@ -462,13 +465,13 @@ public class LoggedInWalk extends AppCompatActivity implements OnMapReadyCallbac
 
                             //step counter registered (걸음 수 측정 레지스터)
                             numSteps = 0;
-                            sensorManager.registerListener(LoggedInWalk.this, accel, SensorManager.SENSOR_DELAY_FASTEST);
+                            sensorManager.registerListener(LoggedInWalkActivity.this, accel, SensorManager.SENSOR_DELAY_FASTEST);
 
                             //requesting location updates according to sdk version & whether permission is granted or not
                             //(sdk버전 & permission 여부에 따라 위치 업데이트를 요청)
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                if (ContextCompat.checkSelfPermission(LoggedInWalk.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
-                                        ContextCompat.checkSelfPermission(LoggedInWalk.this, Manifest.permission.ACCESS_COARSE_LOCATION) ==
+                                if (ContextCompat.checkSelfPermission(LoggedInWalkActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+                                        ContextCompat.checkSelfPermission(LoggedInWalkActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) ==
                                                 PackageManager.PERMISSION_GRANTED) {
                                     mMap.setMyLocationEnabled(true);
                                     mLocationRequest = new LocationRequest();
@@ -476,7 +479,7 @@ public class LoggedInWalk extends AppCompatActivity implements OnMapReadyCallbac
                                     mLocationRequest.setInterval(10000).setFastestInterval(10000 / 2).setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
                                     //create object for tracking (트래킹을 위한 객체 생성)
                                     gpsListener = new GPSListener();
-                                    if (ContextCompat.checkSelfPermission(LoggedInWalk.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                                    if (ContextCompat.checkSelfPermission(LoggedInWalkActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                                         LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, gpsListener);
                                     }
 
@@ -488,7 +491,7 @@ public class LoggedInWalk extends AppCompatActivity implements OnMapReadyCallbac
                                     mLocationRequest.setInterval(10000).setFastestInterval(10000 / 2).setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
                                     //create object for tracking (트래킹을 위한 객체 생성)
                                     gpsListener = new GPSListener();
-                                    if (ContextCompat.checkSelfPermission(LoggedInWalk.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                                    if (ContextCompat.checkSelfPermission(LoggedInWalkActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                                         LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, gpsListener);
                                     }
                                     //setting system time as start time (시스템의 시간을 가져와 startTime로 설정)
@@ -498,7 +501,7 @@ public class LoggedInWalk extends AppCompatActivity implements OnMapReadyCallbac
 
                                     //step counter registered (걸음 수 측정 레지스터)
                                     numSteps = 0;
-                                    sensorManager.registerListener(LoggedInWalk.this, accel, SensorManager.SENSOR_DELAY_FASTEST);
+                                    sensorManager.registerListener(LoggedInWalkActivity.this, accel, SensorManager.SENSOR_DELAY_FASTEST);
                                     // mMap.setMyLocationEnabled(true);
                                 }
 /*
@@ -520,7 +523,7 @@ if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_F
                                 mLocationRequest = new LocationRequest();
                                 mLocationRequest.setInterval(10000).setFastestInterval(10000 / 2).setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
                                 gpsListener = new GPSListener();
-                                if (ContextCompat.checkSelfPermission(LoggedInWalk.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                                if (ContextCompat.checkSelfPermission(LoggedInWalkActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                                     LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, gpsListener);
                                 }
                             }
@@ -603,21 +606,21 @@ if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_F
 
                         // 실질적으로 접속할 수 있도록 생성자를 통해 객체를 만든다.
                         AddLoggedInRecordRequest request = new AddLoggedInRecordRequest(userID, stepsRecord, distanceRecord, calRecord, timeRecord, speedRecord, progressRecord,responseListener);
-                        RequestQueue queue = Volley.newRequestQueue(LoggedInWalk.this);
+                        RequestQueue queue = Volley.newRequestQueue(LoggedInWalkActivity.this);
                         queue.add(request);
 
                         //remove location updates (위치 업데이트 지우기)
                         LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, gpsListener);
 
                         //unregistering step counter (걸음 수 측정 기능 없애기)
-                        sensorManager.unregisterListener(LoggedInWalk.this);
+                        sensorManager.unregisterListener(LoggedInWalkActivity.this);
 
                         //location disable
                         checkLocationPermission();
                         mMap.setMyLocationEnabled(false);
 
                         //displaying distance, kcal, steps etc. (걸어온 거리, 칼로리, 걸음 수 보여줌)
-                        final Dialog dialog = new Dialog(LoggedInWalk.this);
+                        final Dialog dialog = new Dialog(LoggedInWalkActivity.this);
                         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                         dialog.setContentView(R.layout.login_record_dialog);
 
@@ -717,7 +720,7 @@ if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_F
     private void checkLocationPermission() { //for checking permission (permission 체크 용)
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(LoggedInWalk.this,
+            ActivityCompat.requestPermissions(LoggedInWalkActivity.this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     MY_PERMISSIONS_REQUEST_LOCATION);
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
@@ -882,14 +885,14 @@ if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_F
     public double getCalorieRate() {
 
         double calorieRate = 0.00;
-        String savedLoggedInWeight = SavedSharedPreference.getLoggedInModeWeight(LoggedInWalk.this);
+        String savedLoggedInWeight = SavedSharedPreference.getLoggedInModeWeight(LoggedInWalkActivity.this);
         double weightInKm = 0.0;
         if (savedLoggedInWeight.length() == 0) {
             calorieRate = 55.511;
             return calorieRate;
         } else {
             weightInKm = Double.parseDouble(savedLoggedInWeight);
-            if (SavedSharedPreference.getLoggedInModeWeightType(LoggedInWalk.this).trim().equals("lbs")) {
+            if (SavedSharedPreference.getLoggedInModeWeightType(LoggedInWalkActivity.this).trim().equals("lbs")) {
                 weightInKm = weightInKm * 0.453592;
             }
             if (weightInKm <= 52) {
@@ -928,7 +931,7 @@ if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_F
         // 한번 버튼을 누른 뒤, 1.5초 이내에 또 누르면 종료
         if (System.currentTimeMillis() - lastTimeBackPressed < 1500) {
             finish();
-            Intent intent = new Intent(LoggedInWalk.this, LoginMainActivity.class);
+            Intent intent = new Intent(LoggedInWalkActivity.this, LoginMainActivity.class);
             intent.putExtra("userID", userID);
             startActivityForResult(intent, 0);
             return;
@@ -1245,7 +1248,7 @@ if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_F
 
             @Override
             protected void onPreExecute() {
-                target = "http://ggavi2000.cafe24.com/smsList.php?userID="+ userID;  //해당 웹 서버에 접속
+                target = "hellosmsList.php?userID="+ userID;  //해당 웹 서버에 접속
 
                 // (로딩창 띄우기 작업 3/2)
                 // dialog.setMessage("로딩중");

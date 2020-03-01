@@ -1,4 +1,4 @@
-package com.keelim.practice6.nomal_mode;
+package com.keelim.practice6.task;
 
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
@@ -10,7 +10,7 @@ import java.util.Map;
 // (4)카페24와 서버 연동 : 현재 회원가입이 가능한지 확인하는 부분 (회원 아이디 체크)
 public class a_ValidateRequest extends StringRequest {
 
-    final static private String URL = "http://ggavi2000.cafe24.com/UserValidate.php";
+    final static private String URL = "helloUserValidate.php";
     private Map<String, String> parameters;
 
     public a_ValidateRequest(String userID, Response.Listener<String> listener) {

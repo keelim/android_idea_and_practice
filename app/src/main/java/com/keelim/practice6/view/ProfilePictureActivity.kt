@@ -1,4 +1,4 @@
-package com.keelim.practice6.nomal_mode
+package com.keelim.practice6.view
 
 import android.app.Dialog
 import android.app.ProgressDialog
@@ -18,6 +18,9 @@ import com.android.volley.Response
 import com.android.volley.toolbox.Volley
 import com.keelim.practice6.R
 import com.keelim.practice6.model.ImageData
+import com.keelim.practice6.view.customs.CustomConfirmDialog
+import com.keelim.practice6.task.DownloadImageTask
+import com.keelim.practice6.task.ImageDelete
 import kotlinx.android.synthetic.main.dialog_alert.*
 import org.json.JSONObject
 import java.io.BufferedReader
@@ -66,7 +69,7 @@ class ProfilePictureActivity() : AppCompatActivity() {
 
         override fun onPreExecute() {
             target =
-                "http://ggavi2000.cafe24.com/getImageFromServer.php?userId=$userId" //해당 웹 서버에 접속
+                "hellogetImageFromServer.php?userId=$userId" //해당 웹 서버에 접속
             // (로딩창 띄우기 작업 3/2)
             dialog.setMessage("로딩중")
             dialog.show()
@@ -135,7 +138,7 @@ class ProfilePictureActivity() : AppCompatActivity() {
                     image_data = `object`.getString("image_data")
                     println("check>>$userId+$image_data")
                     filename = image_data
-                    val target = "http://ggavi2000.cafe24.com/images/"
+                    val target = "helloimages/"
                     val index = filename!!.indexOf(target)
                     val subIndex = index + target.length
                     filename = filename!!.substring(subIndex)
@@ -169,14 +172,16 @@ class ProfilePictureActivity() : AppCompatActivity() {
                                     val success = jsonResponse.getBoolean("success")
 
                                     if (success) {
-                                        CustomConfirmDialog().showConfirmDialog(this@ProfilePictureActivity, "삭제하였습니다.", false)
+                                        CustomConfirmDialog()
+                                            .showConfirmDialog(this@ProfilePictureActivity, "삭제하였습니다.", false)
                                         (intent).apply {
                                             addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                                             startActivity(this)
                                         }
                                         finish()
                                     } else {
-                                        CustomConfirmDialog().showConfirmDialog(this@ProfilePictureActivity, "삭제를 실패하였습니다.", true)
+                                        CustomConfirmDialog()
+                                            .showConfirmDialog(this@ProfilePictureActivity, "삭제를 실패하였습니다.", true)
                                     }
                                 } catch (e: Exception) {
                                     e.printStackTrace()
@@ -184,7 +189,12 @@ class ProfilePictureActivity() : AppCompatActivity() {
                             }
                             // 실질적으로 삭제할 수 있도록 생성자를 통해 객체를 만든다. (유저 ID, responseListener)
                             // 그리고 어떤 회원이 어떤 강의를 삭제한다는 데이터는 DB에 넣어야 한다.
-                            val imageDelete = ImageDelete(userId, filename, responseListener) // + ""를 붙이면 문자열 형태로 바꿈
+                            val imageDelete =
+                                ImageDelete(
+                                    userId,
+                                    filename,
+                                    responseListener
+                                ) // + ""를 붙이면 문자열 형태로 바꿈
                             val queue = Volley.newRequestQueue(this@ProfilePictureActivity)
                             queue.add(imageDelete)
                         }

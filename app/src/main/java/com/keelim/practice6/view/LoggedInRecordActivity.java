@@ -1,4 +1,4 @@
-package com.keelim.practice6.nomal_mode;
+package com.keelim.practice6.view;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -20,6 +20,9 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.keelim.practice6.R;
 import com.keelim.practice6.model.Record;
+import com.keelim.practice6.task.RecordDelete;
+import com.keelim.practice6.model.RecordListAdapter;
+import com.keelim.practice6.view.customs.CustomConfirmDialog;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -32,7 +35,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoggedInRecord extends AppCompatActivity {
+public class LoggedInRecordActivity extends AppCompatActivity {
 
     private static String userID = "";
 
@@ -51,7 +54,7 @@ public class LoggedInRecord extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_logged_in_record);
         recordListView = (ListView) findViewById(R.id.recordListView);
-        ((AppCompatActivity) LoggedInRecord.this).getSupportActionBar().setTitle((Html.fromHtml("<font color='#ffffff'>" + "나의 기록 관리" + "</font>")));
+        ((AppCompatActivity) LoggedInRecordActivity.this).getSupportActionBar().setTitle((Html.fromHtml("<font color='#ffffff'>" + "나의 기록 관리" + "</font>")));
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -85,13 +88,13 @@ public class LoggedInRecord extends AppCompatActivity {
 
     class BackgroundTask extends AsyncTask<Void, Void, String> {
         // (로딩창 띄우기 작업 3/1) 로딩창을 띄우기 위해 선언해준다.
-        ProgressDialog dialog = new ProgressDialog(LoggedInRecord.this);
+        ProgressDialog dialog = new ProgressDialog(LoggedInRecordActivity.this);
 
         String target;  //우리가 접속할 홈페이지 주소가 들어감
 
         @Override
         protected void onPreExecute() {
-            target = "http://ggavi2000.cafe24.com/RecordList.php?userId="+ userID;  //해당 웹 서버에 접속
+            target = "helloRecordList.php?userId="+ userID;  //해당 웹 서버에 접속
 
             // (로딩창 띄우기 작업 3/2)
             dialog.setMessage("로딩중");
@@ -203,7 +206,7 @@ public class LoggedInRecord extends AppCompatActivity {
 
             case android.R.id.home:
                 finish();
-                Intent intent = new Intent(LoggedInRecord.this, LoginMainActivity.class);
+                Intent intent = new Intent(LoggedInRecordActivity.this, LoginMainActivity.class);
                 intent.putExtra("userID", LoginMainActivity.userID);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
@@ -217,14 +220,14 @@ public class LoggedInRecord extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish(); // close this activity and return to preview activity (if there is any)
-        Intent intent = new Intent(LoggedInRecord.this, LoginMainActivity.class);
+        Intent intent = new Intent(LoggedInRecordActivity.this, LoginMainActivity.class);
         intent.putExtra("userID", LoginMainActivity.userID);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
     }
 
     public void deleteAllRec(){
-        final Dialog dialog = new Dialog(LoggedInRecord.this); //here, the name of the activity class that you're writing a code in, needs to be replaced
+        final Dialog dialog = new Dialog(LoggedInRecordActivity.this); //here, the name of the activity class that you're writing a code in, needs to be replaced
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); //for title bars not to be appeared (타이틀 바 안보이게)
         dialog.setContentView(R.layout.dialog_alert); //setting view
 
@@ -264,7 +267,7 @@ public class LoggedInRecord extends AppCompatActivity {
 
                             // 만약 삭제할 수 있다면
                             if (success) {
-                                new CustomConfirmDialog().showConfirmDialog(LoggedInRecord.this,"삭제하였습니다.",false);
+                                new CustomConfirmDialog().showConfirmDialog(LoggedInRecordActivity.this,"삭제하였습니다.",false);
                                 Intent intent = getIntent();
                                 intent.putExtra("userID",userID);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
@@ -274,7 +277,7 @@ public class LoggedInRecord extends AppCompatActivity {
 
                             // 삭제 실패
                             else {
-                                new CustomConfirmDialog().showConfirmDialog(LoggedInRecord.this,"삭제를 실패하였습니다.",true);
+                                new CustomConfirmDialog().showConfirmDialog(LoggedInRecordActivity.this,"삭제를 실패하였습니다.",true);
                             }
 
                         } catch (Exception e) {
@@ -284,7 +287,7 @@ public class LoggedInRecord extends AppCompatActivity {
                 };
 
                 RecordDelete recordDelete = new RecordDelete(userID, responseListener);  // + ""를 붙이면 문자열 형태로 바꿈
-                RequestQueue queue = Volley.newRequestQueue(LoggedInRecord.this);
+                RequestQueue queue = Volley.newRequestQueue(LoggedInRecordActivity.this);
                 queue.add(recordDelete);
 
 

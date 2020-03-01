@@ -1,4 +1,4 @@
-package com.keelim.practice6.nomal_mode;
+package com.keelim.practice6.task;
 
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class ImageDelete extends StringRequest {
 
-    final static private String URL = "http://ggavi2000.cafe24.com/imageDelete.php";
+    final static private String URL = "helloimageDelete.php";
     private Map<String, String> parameters;
 
     public ImageDelete(String userID, String filename, Response.Listener<String> listener) {

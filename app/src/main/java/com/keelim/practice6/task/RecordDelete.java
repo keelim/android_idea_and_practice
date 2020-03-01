@@ -1,4 +1,4 @@
-package com.keelim.practice6.nomal_mode;
+package com.keelim.practice6.task;
 
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RecordDelete extends StringRequest{
-    final static private String URL = "http://ggavi2000.cafe24.com/deleteAllRec.php";
+    final static private String URL = "hellodeleteAllRec.php";
     private Map<String, String> parameters;
 
     public RecordDelete(String userID,Response.Listener<String> listener) {

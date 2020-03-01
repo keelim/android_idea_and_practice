@@ -1,4 +1,4 @@
-package com.keelim.practice6.nomal_mode;
+package com.keelim.practice6.view;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -12,14 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.keelim.practice6.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link a_LoginMainFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link a_LoginMainFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class a_LoginMainFragment extends Fragment
 {
     // '로그인MainActivity'에서 받아오기 위해 선언
@@ -73,7 +66,7 @@ public class a_LoginMainFragment extends Fragment
                 // MainActivity에서 userID를 받아온다.
                 userID = getActivity().getIntent().getExtras().getString("userID").toString();
 
-                Intent intent = new Intent(getActivity(), LoggedInWalk.class);
+                Intent intent = new Intent(getActivity(), LoggedInWalkActivity.class);
                 intent.putExtra("userID", userID);
                 startActivity(intent);
 

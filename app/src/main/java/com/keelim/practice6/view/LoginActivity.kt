@@ -1,4 +1,4 @@
-package com.keelim.practice6.nomal_mode
+package com.keelim.practice6.view
 
 import android.content.Context
 import android.content.Intent
@@ -9,8 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Response
 import com.android.volley.toolbox.Volley
 import com.keelim.practice6.R
+import com.keelim.practice6.view.customs.CustomConfirmDialog
+import com.keelim.practice6.task.a_LoginRequest
 import com.keelim.practice6.utils.SavedSharedPreference
-import com.keelim.practice6.view.FirstActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONObject
 
@@ -52,7 +53,8 @@ class LoginActivity : AppCompatActivity() {
                 if (success) {
                     save() //if logged in successfully, save the data (로그인 성공하면 데이터를 저장)
                     SavedSharedPreference.setId(this, userID)
-                    CustomConfirmDialog().showConfirmDialog(this, "로그인에 성공하였습니다.", false)
+                    CustomConfirmDialog()
+                        .showConfirmDialog(this, "로그인에 성공하였습니다.", false)
                     // 화면 전환 (로그인창 -> 메인창)
 
                     Intent(this, LoginMainActivity::class.java).apply {
@@ -63,7 +65,11 @@ class LoginActivity : AppCompatActivity() {
                 } else CustomConfirmDialog().showConfirmDialog(this@LoginActivity, "계정을 다시 확인하세요.",true)
             }
             // 실제로 로그인을 보낼 수 있는 로그인 리퀘스트
-            val loginRequest = a_LoginRequest(userID, userPassword, responseLister)
+            val loginRequest = a_LoginRequest(
+                userID,
+                userPassword,
+                responseLister
+            )
             val queue = Volley.newRequestQueue(this)
             queue.add(loginRequest)
         }

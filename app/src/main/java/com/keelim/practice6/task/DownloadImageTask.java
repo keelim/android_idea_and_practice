@@ -1,4 +1,4 @@
-package com.keelim.practice6.nomal_mode;
+package com.keelim.practice6.task;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

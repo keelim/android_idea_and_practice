@@ -1,4 +1,4 @@
-package com.keelim.practice6.nomal_mode
+package com.keelim.practice6.view
 
 import android.app.Activity
 import android.app.ProgressDialog
@@ -26,10 +26,10 @@ class ProfilePictureUploadActivity : AppCompatActivity() {
     var FixBitmap: Bitmap? = null
     var ImageTag = "image_tag"
     var ImageName = "image_data"
-    var ServerUploadPath = "http://ggavi2000.cafe24.com/uploadProfileImage.php"
+    var ServerUploadPath = "hellouploadProfileImage.php"
     var progressDialog: ProgressDialog? = null
     var byteArrayOutputStream: ByteArrayOutputStream? = null
-    var byteArray: ByteArray
+    lateinit var byteArray: ByteArray
     var ConvertImage: String? = null
     private var userId: String? = null
     var httpURLConnection: HttpURLConnection? = null
@@ -118,7 +118,7 @@ class ProfilePictureUploadActivity : AppCompatActivity() {
 
                 override fun doInBackground(vararg params: Void?): String {
                     val imageProcessClass = ImageProcessClass()
-                    val HashMapParams = HashMap<String, String?>()
+                    val HashMapParams = HashMap< String, String?>()
                     HashMapParams[ImageTag] = userId
                     HashMapParams[ImageName] = ConvertImage
                     return imageProcessClass.ImageHttpRequest(ServerUploadPath, HashMapParams)
@@ -133,7 +133,7 @@ class ProfilePictureUploadActivity : AppCompatActivity() {
     }
 
     inner class ImageProcessClass {
-        fun ImageHttpRequest(requestURL: String?, PData: HashMap<String?, String?>?): String {
+        fun ImageHttpRequest(requestURL: String?, PData: HashMap<String, String?>): String {
             var stringBuilder = StringBuilder()
             try {
                 url = URL(requestURL)
@@ -166,7 +166,7 @@ class ProfilePictureUploadActivity : AppCompatActivity() {
         }
 
 
-        private fun bufferedWriterDataFN(HashMapParams: HashMap<String, String>): String {
+        private fun bufferedWriterDataFN(HashMapParams: HashMap<String, String?>): String {
             stringBuilder = StringBuilder()
             for ((key, value) in HashMapParams) {
                 if (check) check = false else stringBuilder!!.append("&")

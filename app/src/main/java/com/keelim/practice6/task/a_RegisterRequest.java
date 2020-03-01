@@ -1,4 +1,4 @@
-package com.keelim.practice6.nomal_mode;
+package com.keelim.practice6.task;
 
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
@@ -10,7 +10,7 @@ import java.util.Map;
 // 카페24와 서버 연동 : 회원가입
 public class a_RegisterRequest extends StringRequest {
 
-    final static private String URL = "http://ggavi2000.cafe24.com/UserRegister.php";
+    final static private String URL = "helloUserRegister.php";
     private Map<String, String> parameters;
 
     public a_RegisterRequest(String userID, String userPassword, String userGender, String userMajor, String userEmail, Response.Listener<String> listener) {

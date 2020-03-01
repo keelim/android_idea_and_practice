@@ -71,7 +71,6 @@ public class CircleImageView extends AppCompatImageView {
 
     public CircleImageView(Context context) {
         super(context);
-
         init();
     }
 
@@ -106,9 +105,7 @@ public class CircleImageView extends AppCompatImageView {
         super.setScaleType(SCALE_TYPE);
         mReady = true;
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            setOutlineProvider(new OutlineProvider());
-        }
+        setOutlineProvider(new OutlineProvider());
 
         if (mSetupPending) {
             setup();

@@ -1,4 +1,4 @@
-package com.keelim.practice6.nomal_mode;
+package com.keelim.practice6.view;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -31,8 +31,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
 import com.keelim.practice6.model.ImageData;
+import com.keelim.practice6.task.DownloadImageTask;
+import com.keelim.practice6.task.Fragment_loggedInRecord;
 import com.keelim.practice6.utils.SavedSharedPreference;
-import com.keelim.practice6.view.FirstActivity;
 import com.keelim.practice6.R;
 
 import org.json.JSONArray;
@@ -96,28 +97,11 @@ public class LoginMainActivity extends AppCompatActivity implements NavigationVi
         headerUserId.setText(userID);
         headerUserId.setTypeface(font_one);
 
-
-/*      // Floating 버튼 제거
-        //set onclick listener for floating button - it will be connected to activity to walk (floating button onclick 리스너, 이걸 클릭하면 걷는 activity로 넘어가게 만들어야 함)
-        FloatingActionButton fabBtn = (FloatingActionButton) findViewById(R.id.fabBtn);
-        fabBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //Toast.makeText(로그인Activity.this,"floating button onclick",Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(로그인Activity.this, LoggedInWalk.class);
-                intent.putExtra("userID", userID);
-                finish();
-                startActivity(intent);
-            }
-        });
-*/
-
-
-
         // 이미지 버튼 추가
         ImageButton walk_imageButton = (ImageButton)findViewById(R.id.walk_imageButton);
         walk_imageButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(LoginMainActivity.this, LoggedInWalk.class);
+                Intent intent = new Intent(LoginMainActivity.this, LoggedInWalkActivity.class);
                 intent.putExtra("userID", userID);
                 startActivity(intent);
                 finish();
@@ -131,7 +115,7 @@ public class LoginMainActivity extends AppCompatActivity implements NavigationVi
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginMainActivity.this, LoggedInWalk.class);
+                Intent intent = new Intent(LoginMainActivity.this, LoggedInWalkActivity.class);
                 intent.putExtra("userID", userID);
                 startActivity(intent);
                 finish();
@@ -267,7 +251,7 @@ public class LoginMainActivity extends AppCompatActivity implements NavigationVi
 
         @Override
         protected void onPreExecute() {
-            target = "http://ggavi2000.cafe24.com/getImageFromServer.php?userId="+userID.trim();  //해당 웹 서버에 접속
+            target = "hellogetImageFromServer.php?userId="+userID.trim();  //해당 웹 서버에 접속
 
             // (로딩창 띄우기 작업 3/2)
             dialog.setMessage("로딩중");
@@ -374,7 +358,7 @@ public class LoginMainActivity extends AppCompatActivity implements NavigationVi
 
         @Override
         protected void onPreExecute() {
-            target = "http://ggavi2000.cafe24.com/NoticeList.php";  //해당 웹 서버에 접속
+            target = "helloNoticeList.php";  //해당 웹 서버에 접속
 
             // (로딩창 띄우기 작업 3/2)
             dialog.setMessage("로딩중");
@@ -589,7 +573,7 @@ public class LoginMainActivity extends AppCompatActivity implements NavigationVi
 
     // 나의 기록 버튼
     public void myRecord() {
-        Intent intent = new Intent(LoginMainActivity.this, LoggedInRecord.class);
+        Intent intent = new Intent(LoginMainActivity.this, LoggedInRecordActivity.class);
         intent.putExtra("userID",userID);
         finish();
         startActivity(intent);

@@ -1,4 +1,4 @@
-package com.keelim.practice6.nomal_mode;
+package com.keelim.practice6.task;
 
 // 로그인 관련 서버세팅을 끝낸 뒤 만듬
 // 해당 서버에 직접 로그인 요청을 보내는 클래스
@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class a_LoginRequest extends StringRequest{
 
-    final static private String URL = "http://ggavi2000.cafe24.com/UserLogin.php";
+    final static private String URL = "helloUserLogin.php";
     private Map<String, String> parameters;
 
     public a_LoginRequest(String userID, String userPassword, Response.Listener<String> listener) {

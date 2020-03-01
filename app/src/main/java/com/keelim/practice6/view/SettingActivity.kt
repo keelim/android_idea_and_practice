@@ -1,4 +1,4 @@
-package com.keelim.practice6.nomal_mode
+package com.keelim.practice6.view
 
 import android.app.Dialog
 import android.content.Intent
@@ -69,7 +69,9 @@ class SettingActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean { // handle arrow click here
         if (item.itemId == android.R.id.home) {
             val intent = Intent(this, LoginMainActivity::class.java)
-            intent.putExtra("userID", LoginMainActivity.userID)
+            intent.putExtra("userID",
+                LoginMainActivity.userID
+            )
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
         }
@@ -79,7 +81,9 @@ class SettingActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         Intent(this, LoginMainActivity::class.java).apply {
-            putExtra("userID", LoginMainActivity.userID)
+            putExtra("userID",
+                LoginMainActivity.userID
+            )
             addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(this)
         }
