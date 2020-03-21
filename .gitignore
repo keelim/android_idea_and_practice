@@ -1,6 +1,0 @@
-*.iml
-.gradle
-/local.properties
-/.idea
-app/src/main/res/layout/Shared/
-practice1
