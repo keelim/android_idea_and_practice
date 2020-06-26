@@ -1,4 +1,4 @@
-package com.keelim.cnubus.base
+package com.keelim.timechecker.base
 
 import androidx.lifecycle.ViewModel
 

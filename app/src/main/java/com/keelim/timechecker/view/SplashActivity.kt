@@ -3,6 +3,7 @@ package com.keelim.timechecker.view
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.keelim.timechecker.R
 
@@ -21,12 +22,11 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        handler = Handler()
+        handler = Handler(Looper.getMainLooper())
         handler.postDelayed(runnable, 1000) //handler 를 통하여 사용
     }
 
     override fun onBackPressed() { //back 키 눌렀을 때
-        super.onBackPressed()
-        handler.removeCallbacks(runnable)
+
     }
 }
