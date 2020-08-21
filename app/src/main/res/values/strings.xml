@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MvvmSample</string>
+    <string name="title_activity_splash">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+</resources>
