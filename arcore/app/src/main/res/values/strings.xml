@@ -1,0 +1,7 @@
+<resources>
+<<<<<<< HEAD
+    <string name="app_name">KeelimCore</string>
+=======
+    <string name="app_name">DataInspector</string>
+>>>>>>> pro/master
+</resources>
